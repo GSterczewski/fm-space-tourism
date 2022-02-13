@@ -30,6 +30,11 @@
 
   --ff-sans: "Barlow Condensed", sans-serif;
   --ff-serif: "Bellefair", serif;
+
+  /*--------- LETTER SPACING ---------*/
+  --ls-1: 2.7px;
+  --ls-2: 3.38px;
+  --ls-3: 4.75px;
 }
 
 @media (min-width: 50em) {
@@ -49,8 +54,8 @@
     --fs-700: 3.5rem;
     --fs-600: 2rem;
     --fs-500: 1.75rem;
-    --fs-350: 0.875rem;
-    --fs-300: 1rem;
+    --fs-350: 1rem;
+    --fs-300: 1.25rem;
   }
 }
 
@@ -61,8 +66,15 @@
 .ff-sans {
   font-family: var(--ff-sans);
 }
+
 .fs-900 {
   font-size: var(--fs-900);
+}
+.fs-500 {
+  font-size: var(--fs-500);
+}
+.fs-300 {
+  font-size: var(--fs-300);
 }
 .color-primary {
   color: hsl(var(--color-primary));
@@ -74,15 +86,19 @@
   color: hsl(var(--color-dark));
 }
 .color-gray {
-  color: hsl(var(--color-dark) / 0.25);
+  color: hsl(var(--color-primary) / 0.25);
 }
 .d-block {
   display: block;
 }
 
+.no-outline:focus-visible {
+  outline: none;
+}
 /*-------- BASE -------------------*/
 body {
   color: hsl(var(--color-primary));
+  font-family: var(--ff-sans);
 }
 /*------- TYPOGRAPHY  ------------ */
 
