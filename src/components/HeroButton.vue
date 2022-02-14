@@ -5,9 +5,9 @@ export default defineComponent({
 });
 </script>
 <template>
-  <button
-    class="hero-button shadow no-outline color-dark bg-primary ff-serif"
-  ></button>
+  <button class="hero-button shadow no-outline color-dark bg-primary ff-serif">
+    <slot />
+  </button>
 </template>
 
 <style scoped>
