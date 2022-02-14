@@ -88,6 +88,9 @@
 .color-gray {
   color: hsl(var(--color-primary) / 0.25);
 }
+.bg-primary {
+  background-color: hsl(var(--color-primary));
+}
 .d-block {
   display: block;
 }
