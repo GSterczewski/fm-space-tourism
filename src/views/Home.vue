@@ -30,7 +30,6 @@ export default defineComponent({
 <style scoped>
 .home {
   display: grid;
-  background-color: black;
   text-align: center;
   place-content: center;
   gap: 10vh;
