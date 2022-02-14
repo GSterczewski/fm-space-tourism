@@ -39,7 +39,7 @@ export default defineComponent({
   font-weight: bold;
 }
 
-@media (max-width: 50em) {
+@media (max-width: 48em) {
   .navlink::after {
     content: "";
     position: absolute;
@@ -60,7 +60,7 @@ export default defineComponent({
   }
 }
 
-@media (min-width: 50em) and (max-width: 75em) {
+@media (min-width: 48em) and (max-width: 75em) {
   .navlink {
     letter-spacing: 2.36px;
   }
@@ -69,7 +69,7 @@ export default defineComponent({
   }
 }
 
-@media (min-width: 50em) {
+@media (min-width: 48em) {
   .navlink {
     padding-block: 2em;
   }
