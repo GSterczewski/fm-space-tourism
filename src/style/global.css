@@ -34,7 +34,7 @@
   --ls-3: 4.75px;
 }
 
-@media (min-width: 50em) {
+@media (min-width: 48em) {
   :root {
     --fs-900: 9.375rem;
     --fs-800: 5rem;
