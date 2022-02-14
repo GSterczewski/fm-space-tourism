@@ -11,12 +11,4 @@ export default defineComponent({
     <hero-button>explore</hero-button>
   </div>
 </template>
-<style scoped>
-.home {
-  background-color: black;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>
+<style scoped></style>
