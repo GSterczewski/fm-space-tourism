@@ -31,7 +31,7 @@ export default defineComponent({
   box-shadow: 0 0 0 var(--shadow-size) var(--shadow-color);
 }
 
-@media (min-width: 50em) {
+@media (min-width: 48em) {
   .hero-button {
     font-size: 2rem;
     width: 15.125rem;
