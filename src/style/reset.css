@@ -1,0 +1,27 @@
+ /* Box sizing reset for all elements and pseudo-elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+
+/* Make images easier to work with */
+img {
+    max-width: 100%;
+    display: block; 
+  }
+
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+}
