@@ -44,12 +44,12 @@ export default defineComponent({
 @media (min-width: 75em) {
   .home {
     text-align: start;
-    grid-template-columns: 10% 40% 40% 10%;
+    grid-template-columns: 10% 1fr 1fr 10%;
     align-content: end;
     padding-bottom: 10%;
   }
   .home__content {
-    max-width: 65ch;
+    max-width: 62ch;
     grid-column: 2;
   }
   .home__button-container {
