@@ -22,10 +22,12 @@ export default defineComponent({
   <main class="page">
     <page-title pageTitle="pick your destination" pageNumber="01" />
     <article class="destination">
-      <img
-        class="destination__image"
-        :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
-      />
+      <div class="destination__image-container">
+        <img
+          class="destination__image"
+          :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
+        />
+      </div>
       <div class="destination__tabs">
         <v-tab
           v-for="(destination, index) in destinations"
@@ -67,21 +69,29 @@ export default defineComponent({
     gap: 4em;
   }
 }
+@media (min-width: 75em) {
+  .page {
+    padding-top: 0;
+    justify-content: center;
+  }
+}
 .destination {
-  /* background-color: aqua; */
   --image-size: 10.625rem;
   --vertical-flow: 2rem;
   display: grid;
-  gap: var(--vertical-flow);
+  row-gap: var(--vertical-flow);
   justify-items: center;
   text-align: center;
 }
 .destination > hr {
   width: 100%;
-  max-width: 48em;
+  height: 1px;
+  max-width: 64ch;
+  opacity: 0.3;
 }
 .destination__image {
   width: var(--image-size);
+  aspect-ratio: 1;
 }
 .destination__tabs {
   display: flex;
@@ -111,6 +121,37 @@ export default defineComponent({
     flex-direction: row;
     justify-content: center;
     gap: 5em;
+  }
+}
+@media (min-width: 75em) {
+  .destination {
+    --image-size: 100%;
+    --vertical-flow: 2rem;
+    grid-template-columns: 10% 35% 10% 35% 10%;
+    grid-template-rows: auto auto 2px auto;
+    text-align: start;
+    justify-items: start;
+  }
+  .destination > hr {
+    grid-column: 4;
+  }
+  .destination__image-container {
+    grid-column: 2;
+    grid-row: 1/5;
+    display: flex;
+    align-items: flex-end;
+  }
+  .destination__tabs {
+    grid-column: 4;
+    grid-row: 1;
+  }
+  .destination__info {
+    grid-column: 4;
+    grid-row: 2;
+  }
+  .destination__stats {
+    grid-column: 4;
+    justify-content: start;
   }
 }
 </style>
