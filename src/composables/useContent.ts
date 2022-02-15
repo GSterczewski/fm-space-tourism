@@ -29,3 +29,5 @@ export function useContent(): Content {
     technology: content.terminology,
   };
 }
+
+export default useContent;
