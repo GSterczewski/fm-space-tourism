@@ -25,10 +25,12 @@ export default defineComponent({
   display: flex;
   gap: 1rem;
   letter-spacing: var(--ls-1);
+  justify-content: center;
 }
 
 @media (min-width: 50em) {
   .page-title {
+    justify-content: start;
     letter-spacing: var(--ls-2);
   }
 }
