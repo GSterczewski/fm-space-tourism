@@ -21,7 +21,7 @@ export default defineComponent({
 <template>
   <button
     @click="() => onClick()"
-    class="tab color-primary no-outline"
+    class="tab color-primary no-outline ls-250"
     :class="{ 'tab--active': isActive }"
   >
     <slot />
@@ -33,6 +33,7 @@ export default defineComponent({
   cursor: pointer;
   border: none;
   background: none;
+  text-transform: uppercase;
   padding-bottom: 0.5em;
 }
 .tab::after {
