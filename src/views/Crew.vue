@@ -80,4 +80,9 @@ export default defineComponent({
     justify-self: flex-end;
   }
 }
+@media (max-width: 47.9em) and (min-height: 800px) {
+  .crew {
+    padding-top: calc(var(--vertical-flow) * 1.5);
+  }
+}
 </style>
