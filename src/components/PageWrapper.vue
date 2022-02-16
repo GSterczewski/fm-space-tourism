@@ -28,12 +28,14 @@ export default defineComponent({
 </template>
 <style scoped>
 .page-wrapper {
-  padding-inline: clamp(1.5rem, 5vw, 10rem);
   padding-top: clamp(2rem, 8vh, 5rem);
   padding-bottom: 5rem;
 }
+.page-wrapper__title {
+  padding-inline: clamp(1.5rem, 5vw, 10rem);
+}
 @media (min-width: 75em) {
-  .page-wrapper {
+  .page-wrapper__title {
     padding-left: 10vw;
   }
 }
