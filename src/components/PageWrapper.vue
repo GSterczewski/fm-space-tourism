@@ -32,4 +32,9 @@ export default defineComponent({
   padding-top: clamp(2rem, 8vh, 5rem);
   padding-bottom: 5rem;
 }
+@media (min-width: 75em) {
+  .page-wrapper {
+    padding-left: 10vw;
+  }
+}
 </style>

@@ -62,7 +62,7 @@ export default defineComponent({
 }
 .crew > article > p {
   margin-top: calc(var(--vertical-flow) / 2);
-  max-width: 64ch;
+  max-width: 60ch;
 }
 @media (min-width: 48em) {
   .crew {
@@ -83,6 +83,29 @@ export default defineComponent({
 @media (max-width: 47.9em) and (min-height: 800px) {
   .crew {
     padding-top: calc(var(--vertical-flow) * 1.5);
+  }
+}
+@media (min-width: 75em) {
+  .crew {
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 3rem 17rem 4vh 1fr;
+    align-items: start;
+    text-align: start;
+  }
+  .crew > img {
+    max-width: 80%;
+    grid-row: 1/2;
+    grid-column: 2;
+  }
+  .crew > article {
+    grid-row: 2;
+    grid-column: 1;
+  }
+  .indicators {
+    grid-row: 4;
+    grid-column: 1;
   }
 }
 </style>
