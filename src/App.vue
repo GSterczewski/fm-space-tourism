@@ -9,7 +9,6 @@ export default defineComponent({
   setup() {
     const backgroundImage = computed(() => {
       const route = useRoute();
-      console.log(route.name);
       return `background--${String(route.name).toLowerCase()}`;
     });
     return {

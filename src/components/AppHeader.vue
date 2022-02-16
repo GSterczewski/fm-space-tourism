@@ -37,7 +37,6 @@ export default defineComponent({
 <style scoped>
 .app-header {
   --header-padding-left: 2em;
-  background-color: black;
   display: flex;
   justify-content: space-between;
   padding-left: var(--header-padding-left);
@@ -55,6 +54,16 @@ export default defineComponent({
 .button-container {
   display: none;
 }
+.navigation-container {
+  background-color: hsl(var(--color-dark) / 0.75);
+}
+@supports (backdrop-filter: blur(0.1rem)) {
+  .navigation-container {
+    background-color: hsl(var(--color-primary) / 0.15);
+    backdrop-filter: blur(0.3rem);
+  }
+}
+
 @media (max-width: 48em) {
   .app-header {
     padding-block: 1em;
@@ -95,6 +104,7 @@ export default defineComponent({
 @media (min-width: 75em) {
   .app-header {
     --header-padding-left: 5em;
+    margin-top: 2rem;
   }
   .navigation-container {
     --navigation-padding-inline: 5em;
