@@ -14,6 +14,7 @@ interface Destination {
 }
 interface Technology {
   name: string;
+  image: string;
   definition: string;
 }
 interface Content {
