@@ -1,11 +1,96 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import useContent from "@/composables/useContent";
+import useCarousel from "@/composables/useCarousel";
+import NumberedIndicator from "@/components/NumberedIndicator.vue";
+import PageWrapper from "@/components/PageWrapper.vue";
 export default defineComponent({
   name: "Technology",
-  components: {},
+  components: { PageWrapper, NumberedIndicator },
+  setup() {
+    const { technology } = useContent();
+    const { selectedItem, changeItem } = useCarousel(technology);
+    return {
+      selectedItem,
+      changeItem,
+      technology,
+    };
+  },
 });
 </script>
 <template>
-  <div class="technology"></div>
+  <page-wrapper pageTitle="space launch 101" pageNumber="03">
+    <div class="technology">
+      <div class="technology__image" :class="selectedItem.image"></div>
+      <div class="indicators">
+        <numbered-indicator
+          v-for="(tech, index) in technology"
+          :key="tech.name"
+          :onClick="() => changeItem(index)"
+          :isActive="tech.name === selectedItem.name"
+          >{{ index + 1 }}</numbered-indicator
+        >
+      </div>
+      <article>
+        <h2 class="heading ff-serif">
+          <span class="d-block fs-250 color-gray">the terminology</span>
+          <span class="fs-700">{{ selectedItem.name }}</span>
+        </h2>
+        <p class="fs-300 color-accent">
+          {{ selectedItem.definition }}
+        </p>
+      </article>
+    </div>
+  </page-wrapper>
 </template>
-<style scoped></style>
+<style scoped>
+.technology {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(3rem, 6vh, 8rem);
+  padding-top: clamp(2rem, 6vh, 6rem);
+  text-align: center;
+}
+.technology > article {
+  max-width: 30rem;
+  padding-inline: 1.5rem;
+}
+.technology > article > p {
+  margin-top: 1rem;
+}
+.technology__image {
+  width: 100%;
+  aspect-ratio: 5/2;
+  background-size: cover;
+  background-position: center;
+}
+.indicators {
+  display: flex;
+  gap: 1rem;
+}
+.image-launch-vehicle {
+  background-image: url("../assets/technology/image-launch-vehicle-landscape.jpg");
+}
+.image-spaceport {
+  background-image: url("../assets/technology/image-spaceport-landscape.jpg");
+}
+.image-space-capsule {
+  background-image: url("../assets/technology/image-space-capsule-landscape.jpg");
+}
+
+@media (min-width: 75em) {
+  .image-launch-vehicle {
+    background-image: url("../assets/technology/image-launch-vehicle-portrait.jpg");
+  }
+  .image-spaceport {
+    background-image: url("../assets/technology/image-spaceport-portrait.jpg");
+  }
+  .image-space-capsule {
+    background-image: url("../assets/technology/image-space-capsule-portrait.jpg");
+  }
+  .indicators {
+    flex-direction: column;
+  }
+}
+</style>
