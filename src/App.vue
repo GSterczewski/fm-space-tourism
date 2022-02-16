@@ -46,6 +46,9 @@ export default defineComponent({
 .background--crew {
   background-image: url("./assets/crew/background-crew-mobile.jpg");
 }
+.background--technology {
+  background-image: url("./assets/technology/background-technology-mobile.jpg");
+}
 
 @media (min-width: 48em) {
   .background--home {
