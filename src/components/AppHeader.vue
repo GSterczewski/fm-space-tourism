@@ -34,12 +34,19 @@ export default defineComponent({
     </div>
   </header>
 </template>
-<style scoped>
+<style scoped lang="scss">
 .app-header {
   --header-padding-left: 2em;
   display: flex;
   justify-content: space-between;
   padding-left: var(--header-padding-left);
+  @media (max-width: breakpoint(medium)) {
+    padding-block: 1em;
+  }
+  @media (min-width: breakpoint(large)) {
+    --header-padding-left: 5em;
+    margin-top: 2rem;
+  }
 }
 .app-logo {
   aspect-ratio: 1;
@@ -48,27 +55,13 @@ export default defineComponent({
   background-repeat: no-repeat;
   background-image: url("../assets/shared/logo.svg");
 }
-.line {
-  display: none;
-}
-.button-container {
-  display: none;
-}
 .navigation-container {
   background-color: hsl(var(--color-dark) / 0.75);
-}
-@supports (backdrop-filter: blur(0.1rem)) {
-  .navigation-container {
+  @supports (backdrop-filter: blur(0.1rem)) {
     background-color: hsl(var(--color-primary) / 0.15);
     backdrop-filter: blur(0.3rem);
   }
-}
-
-@media (max-width: 48em) {
-  .app-header {
-    padding-block: 1em;
-  }
-  .navigation-container {
+  @media (max-width: breakpoint(medium)) {
     position: fixed;
     right: -15em;
     width: 15em;
@@ -77,10 +70,27 @@ export default defineComponent({
     padding-left: 2em;
     transition: all 0.35 ease;
   }
-  .navigation-container--visible {
+  @media (min-width: breakpoint(medium)) {
+    --navigation-padding-inline: 2em;
+    width: 60%;
+    padding-right: var(--navigation-padding-inline);
+    padding-left: var(--navigation-padding-inline);
+  }
+  @media (min-width: breakpoint(large)) {
+    --navigation-padding-inline: 5em;
+  }
+
+  &--visible {
     right: 0;
   }
-  .button-container {
+}
+
+.line {
+  display: none;
+}
+.button-container {
+  display: none;
+  @media (max-width: breakpoint(medium)) {
     position: absolute;
     right: 2em;
     height: 3rem;
@@ -89,27 +99,15 @@ export default defineComponent({
     align-items: center;
   }
 }
-@media (min-width: 48em) {
-  .navigation-container {
-    --navigation-padding-inline: 2em;
-    width: 60%;
-    padding-right: var(--navigation-padding-inline);
-    padding-left: var(--navigation-padding-inline);
-  }
-  .header-line {
+
+.header-line {
+  @media (min-width: breakpoint(medium)) {
     position: relative;
     flex-grow: 1;
   }
 }
-@media (min-width: 75em) {
-  .app-header {
-    --header-padding-left: 5em;
-    margin-top: 2rem;
-  }
-  .navigation-container {
-    --navigation-padding-inline: 5em;
-  }
-  .line {
+.line {
+  @media (min-width: breakpoint(large)) {
     display: block;
     position: absolute;
     left: 2em;

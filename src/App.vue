@@ -27,8 +27,8 @@ export default defineComponent({
   </div>
 </template>
 
-<style>
-@import "./style/global.css";
+<style lang="scss">
+@import "./style/global.scss";
 .layout-wrapper {
   min-height: 100vh;
   display: grid;
@@ -37,45 +37,17 @@ export default defineComponent({
   background-repeat: no-repeat;
   background-size: cover;
 }
-.background--home {
-  background-image: url("./assets/home/background-home-mobile.jpg");
-}
-.background--destination {
-  background-image: url("./assets/destination/background-destination-mobile.jpg");
-}
-.background--crew {
-  background-image: url("./assets/crew/background-crew-mobile.jpg");
-}
-.background--technology {
-  background-image: url("./assets/technology/background-technology-mobile.jpg");
-}
 
-@media (min-width: 48em) {
-  .background--home {
-    background-image: url("./assets/home/background-home-tablet.jpg");
-  }
-  .background--destination {
-    background-image: url("./assets/destination/background-destination-tablet.jpg");
-  }
-  .background--crew {
-    background-image: url("./assets/crew/background-crew-tablet.jpg");
-  }
-  .background--technology {
-    background-image: url("./assets/technology/background-technology-tablet.jpg");
-  }
-}
-@media (min-width: 75em) {
-  .background--home {
-    background-image: url("./assets/home/background-home-desktop.jpg");
-  }
-  .background--destination {
-    background-image: url("./assets/destination/background-destination-desktop.jpg");
-  }
-  .background--crew {
-    background-image: url("./assets/crew/background-crew-desktop.jpg");
-  }
-  .background--technology {
-    background-image: url("./assets/technology/background-technology-desktop.jpg");
+$backgrounds: ("home", "destination", "crew", "technology");
+@each $background in $backgrounds {
+  .background--#{$background} {
+    background-image: url("./assets/#{$background}/background-#{$background}-mobile.jpg");
+    @media (min-width: breakpoint("medium")) {
+      background-image: url("./assets/#{$background}/background-#{$background}-tablet.jpg");
+    }
+    @media (min-width: breakpoint("large")) {
+      background-image: url("./assets/#{$background}/background-#{$background}-desktop.jpg");
+    }
   }
 }
 </style>
