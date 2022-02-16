@@ -149,11 +149,7 @@ body {
   color: hsl(var(--color-primary));
   font-family: var(--ff-sans);
 }
-@media(min-width:48em){
-  body{
-    /* overflow: hidden; */
-  }
-}
+
 /*------- TYPOGRAPHY  ------------ */
 
 .heading {
