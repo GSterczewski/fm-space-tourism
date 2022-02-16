@@ -33,7 +33,7 @@ export default defineComponent({
       </div>
       <article>
         <h2 class="heading ff-serif">
-          <span class="d-block fs-250 color-gray">the terminology</span>
+          <span class="d-block fs-250 color-gray">the terminology...</span>
           <span class="fs-700">{{ selectedItem.name }}</span>
         </h2>
         <p class="fs-300 color-accent">
@@ -80,6 +80,36 @@ export default defineComponent({
 }
 
 @media (min-width: 75em) {
+  .technology {
+    display: grid;
+    grid-template-columns: 5rem auto 1fr;
+    grid-template-rows: 25% 50% 25%;
+    align-items: start;
+    gap: 0;
+    padding-top: 0;
+    text-align: start;
+    padding-left: 10vw;
+  }
+  .indicators {
+    grid-column: 1;
+    grid-row: 2/3;
+    height: 100%;
+    gap: 0;
+    justify-content: space-evenly;
+  }
+  .technology__image {
+    grid-column: 3;
+    grid-row: 1/4;
+    aspect-ratio: 9/10;
+    height: 515px;
+    width: auto;
+    justify-self: end;
+  }
+  .technology > article {
+    grid-column: 2;
+    grid-row: 2/3;
+    max-width: 40rem;
+  }
   .image-launch-vehicle {
     background-image: url("../assets/technology/image-launch-vehicle-portrait.jpg");
   }
