@@ -20,23 +20,19 @@ export default defineComponent({
     <span>{{ pageTitle }}</span>
   </h1>
 </template>
-<style scoped>
+<style scoped lang="scss">
 .page-title {
   display: flex;
   gap: 1rem;
-  letter-spacing: var(--ls-1);
+  letter-spacing: var(--ls-250);
   justify-content: center;
-}
 
-@media (min-width: 50em) {
-  .page-title {
+  @media (min-width: breakpoint(medium)) {
     justify-content: start;
-    letter-spacing: var(--ls-2);
+    letter-spacing: var(--ls-300);
   }
-}
-@media (min-width: 75em) {
-  .page-title {
-    letter-spacing: var(--ls-3);
+  @media (min-width: breakpoint(large)) {
+    letter-spacing: var(--ls-400);
     gap: 2rem;
   }
 }
