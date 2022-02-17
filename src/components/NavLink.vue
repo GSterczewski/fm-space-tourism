@@ -71,7 +71,7 @@ export default defineComponent({
 
 @media (min-width: breakpoint(medium)) {
   .navlink {
-    padding-block: 2em;
+    padding-block: 1.8rem;
   }
   .navlink::after {
     content: "";
