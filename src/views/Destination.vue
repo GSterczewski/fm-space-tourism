@@ -2,11 +2,13 @@
 import { defineComponent } from "vue";
 import useContent from "@/composables/useContent";
 import useCarousel from "@/composables/useCarousel";
-import PageTitle from "@/components/PageTitle.vue";
 import VTab from "@/components/VTab.vue";
+import PageWrapper from "@/components/PageWrapper.vue";
+import DestinationStats from "@/components/DestinationStats.vue";
+import DestinationInfo from "@/components/DestinationInfo.vue";
 export default defineComponent({
   name: "Destination",
-  components: { PageTitle, VTab },
+  components: { PageWrapper, VTab, DestinationStats, DestinationInfo },
   setup() {
     const { destinations } = useContent();
     const { changeItem, selectedItem } = useCarousel(destinations);
@@ -19,138 +21,108 @@ export default defineComponent({
 });
 </script>
 <template>
-  <main class="page">
-    <page-title pageTitle="pick your destination" pageNumber="01" />
+  <page-wrapper pageTitle="pick your destination" pageNumber="01">
     <article class="destination">
-      <div class="destination__image-container">
+      <div class="destination__image">
         <img
-          class="destination__image"
           :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
         />
       </div>
-      <div class="destination__tabs">
-        <v-tab
-          v-for="(destination, index) in destinations"
-          :key="destination.name"
-          :isActive="destination.name === selectedItem.name"
-          :onClick="() => changeItem(index)"
-          >{{ destination.name }}</v-tab
-        >
+      <div class="destination__content">
+        <div class="tabs">
+          <v-tab
+            v-for="(destination, index) in destinations"
+            :key="destination.name"
+            :isActive="destination.name === selectedItem.name"
+            :onClick="() => changeItem(index)"
+            >{{ destination.name }}</v-tab
+          >
+        </div>
+        <section>
+          <destination-info
+            :name="selectedItem.name"
+            :brief="selectedItem.brief"
+          />
+        </section>
+
+        <section class="destination__stats">
+          <destination-stats
+            :distance="selectedItem.distance"
+            :travelTime="selectedItem.travelTime"
+          />
+        </section>
       </div>
-      <section class="destination__info">
-        <h2 class="heading ff-serif fs-800">{{ selectedItem.name }}</h2>
-        <p class="color-accent">{{ selectedItem.brief }}</p>
-      </section>
-      <hr />
-      <section class="destination__stats">
-        <div>
-          <h3 class="heading ls-200 color-accent fs-200">avg. distance</h3>
-          <p class="heading fs-650 ff-serif">{{ selectedItem.distance }}</p>
-        </div>
-        <div>
-          <h3 class="heading ls-200 color-accent fs-200">est. travel time</h3>
-          <p class="heading fs-650 ff-serif">{{ selectedItem.travelTime }}</p>
-        </div>
-      </section>
     </article>
-  </main>
+  </page-wrapper>
 </template>
-<style scoped>
-.page {
-  padding-top: 10vh;
-  padding-bottom: 2em;
-  padding-inline: 8vw;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-@media (min-width: 48em) {
-  .page {
-    gap: 4em;
-  }
-}
-@media (min-width: 75em) {
-  .page {
-    padding-top: 0;
-    justify-content: center;
-  }
-}
+<style scoped lang="scss">
 .destination {
-  --image-size: 10.625rem;
-  --vertical-flow: 2rem;
-  display: grid;
-  row-gap: var(--vertical-flow);
-  justify-items: center;
-  text-align: center;
-}
-.destination > hr {
-  width: 100%;
-  height: 1px;
-  max-width: 64ch;
-  opacity: 0.3;
-}
-.destination__image {
-  width: var(--image-size);
-  aspect-ratio: 1;
-}
-.destination__tabs {
-  display: flex;
-  gap: 1rem;
-}
-.destination__info {
-  max-width: 64ch;
-}
-.destination__info > h2 {
-  margin-top: -1rem;
-}
-.destination__stats {
-  width: 100%;
-  max-width: 48em;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-@media (min-width: 48em) {
-  .destination {
-    --image-size: 18.75rem;
-    --vertical-flow: 3rem;
+  align-items: center;
+  gap: 2rem;
+  padding-inline: 1.5rem;
+  padding-top: 5vh;
+  @media (min-width: breakpoint(large)) {
+    min-height: 65h;
+    padding-top: 0;
+    padding-inline: 10vw;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 3rem 3rem auto;
+    gap: 0;
+    column-gap: 3rem;
+  }
+  @media (orientation: landscape) and (min-height: 1000px) {
+    padding-top: 8vh;
+  }
+  @media (orientation: portrait) and (min-height: 1300px) {
+    padding-top: 10vh;
   }
 
-  .destination__stats {
-    flex-direction: row;
-    justify-content: center;
-    gap: 5em;
-  }
-}
-@media (min-width: 75em) {
-  .destination {
-    --image-size: 100%;
-    --vertical-flow: 2rem;
-    grid-template-columns: 10% 35% 10% 35% 10%;
-    grid-template-rows: auto auto 2px auto;
-    text-align: start;
-    justify-items: start;
-  }
-  .destination > hr {
-    grid-column: 4;
-  }
-  .destination__image-container {
-    grid-column: 2;
-    grid-row: 1/5;
+  &__image {
     display: flex;
-    align-items: flex-end;
+    justify-content: start;
+    padding-left: 5vw;
+    align-items: start;
+
+    & > img {
+      aspect-ratio: 1/1;
+      height: auto;
+      width: 90%;
+      max-width: 25rem;
+    }
+    @media (min-width: breakpoint(large)) {
+      grid-column: 1;
+      grid-row: 3;
+
+      & > img {
+        width: 50vh;
+      }
+    }
   }
-  .destination__tabs {
-    grid-column: 4;
-    grid-row: 1;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+    @media (min-width: breakpoint(large)) {
+      text-align: start;
+      grid-row: 2/4;
+      grid-column: 2;
+      justify-content: center;
+    }
   }
-  .destination__info {
-    grid-column: 4;
-    grid-row: 2;
+  &__stats {
+    max-width: 30rem;
   }
-  .destination__stats {
-    grid-column: 4;
+}
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  @media (min-width: breakpoint(large)) {
     justify-content: start;
   }
 }
