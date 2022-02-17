@@ -29,7 +29,7 @@ export default defineComponent({
 <style scoped lang="scss">
 .page-wrapper {
   padding-top: clamp(2rem, 8vh, 5rem);
-  padding-bottom: 3rem;
+
   &__title {
     padding-inline: clamp(1.5rem, 5vw, 10rem);
 
