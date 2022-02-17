@@ -25,7 +25,7 @@ export default defineComponent({
   ></button>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .circle-indicator {
   --size: 0.875rem;
   border: none;
@@ -35,17 +35,16 @@ export default defineComponent({
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.35s ease-in;
+
+  &--active {
+    background-color: hsl(var(--color-primary));
+  }
+  @media (min-width: breakpoint(large)) {
+    --size: 1rem;
+  }
 }
 .circle-indicator:not(.circle-indicator--active):hover,
 .circle-indicator:not(.circle-indicator--active):focus {
   background-color: hsl(var(--color-primary) / 0.5);
-}
-.circle-indicator--active {
-  background-color: hsl(var(--color-primary));
-}
-@media (min-width: 75em) {
-  .circle-indicator {
-    --size: 1rem;
-  }
 }
 </style>

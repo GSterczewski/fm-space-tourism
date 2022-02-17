@@ -41,7 +41,7 @@ export default defineComponent({
     </svg>
   </button>
 </template>
-<style scoped>
+<style scoped lang="scss">
 .hamburger-button {
   width: 1.5rem;
   height: 21px;
@@ -49,9 +49,10 @@ export default defineComponent({
   cursor: pointer;
   background: none;
   color: hsl(var(--color-accent));
-}
-.hamburger-button:hover,
-.hamburger-button:focus {
-  color: hsl(var(--color-primary));
+
+  &:hover,
+  &:focus {
+    color: hsl(var(--color-primary));
+  }
 }
 </style>

@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-// import PageTitle from "@/components/PageTitle.vue";
 import useContent from "@/composables/useContent";
 import useCarousel from "@/composables/useCarousel";
 import CircleIndicator from "@/components/CircleIndicator.vue";
@@ -43,69 +42,52 @@ export default defineComponent({
     </div>
   </page-wrapper>
 </template>
-<style scoped>
+<style scoped lang="scss">
+.crew {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding-inline: 1.5rem;
+  padding-top: clamp(2rem, 5vh, 6rem);
+  padding-bottom: 4rem;
+  & > article > p {
+    max-width: 65ch;
+  }
+  @media (min-width: breakpoint(medium)) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    min-height: 40vh;
+  }
+  @media (min-width: breakpoint(large)) {
+    min-height: 70vh;
+    padding-left: 10vw;
+    text-align: start;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+  & > img {
+    max-width: 80%;
+    @media (min-width: breakpoint(medium)) {
+      max-height: 40vh;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%);
+    }
+    @media (min-height: 1000px) {
+      max-height: 50vh;
+    }
+    @media (min-width: breakpoint(large)) {
+      max-height: 70vh;
+      transform: translate(0);
+      left: 65%;
+    }
+  }
+}
 .indicators {
   display: flex;
   gap: 1rem;
-}
-.crew {
-  --vertical-flow: max(2rem, 5vh);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding-top: var(--vertical-flow);
-  gap: var(--vertical-flow);
-}
-.crew > img {
-  max-width: 60%;
-}
-.crew > article > p {
-  margin-top: calc(var(--vertical-flow) / 2);
-  max-width: 60ch;
-}
-@media (min-width: 48em) {
-  .crew {
-    flex-direction: column-reverse;
-  }
-  .crew > img {
-    max-width: 80%;
-  }
-}
-@media (min-width: 48em) and (min-height: 68em) {
-  .crew {
-    min-height: 75rem;
-  }
-  .crew > img {
-    justify-self: flex-end;
-  }
-}
-@media (max-width: 47.9em) and (min-height: 800px) {
-  .crew {
-    padding-top: calc(var(--vertical-flow) * 1.5);
-  }
-}
-@media (min-width: 75em) {
-  .crew {
-    gap: 1rem;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 3rem 17rem 4vh 1fr;
-    align-items: start;
-    text-align: start;
-  }
-  .crew > img {
-    max-width: 80%;
-    grid-row: 1/2;
-    grid-column: 2;
-  }
-  .crew > article {
-    grid-row: 2;
-    grid-column: 1;
-  }
-  .indicators {
-    grid-row: 4;
-    grid-column: 1;
-  }
 }
 </style>

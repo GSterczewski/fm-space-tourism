@@ -30,16 +30,16 @@ export default defineComponent({
     </ul>
   </nav>
 </template>
-<style scoped>
-.app-navigation > ul {
-  display: flex;
-  list-style: none;
-  justify-content: space-between;
-}
-@media (max-width: 48em) {
-  .app-navigation > ul {
-    flex-direction: column;
-    gap: 2rem;
+<style lang="scss" scoped>
+.app-navigation {
+  & > ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    @media (max-width: breakpoint(medium)) {
+      flex-direction: column;
+      gap: 2rem;
+    }
   }
 }
 </style>

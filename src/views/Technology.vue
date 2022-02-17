@@ -43,7 +43,17 @@ export default defineComponent({
     </div>
   </page-wrapper>
 </template>
-<style scoped>
+<style scoped lang="scss">
+$images: ("launch-vehicle", "spaceport", "space-capsule");
+@each $image in $images {
+  .image-#{$image} {
+    background-image: url("../assets/technology/image-#{$image}-landscape.jpg");
+    @media (min-width: breakpoint(large)) {
+      background-image: url("../assets/technology/image-#{$image}-portrait.jpg");
+    }
+  }
+}
+
 .technology {
   display: flex;
   flex-direction: column;
@@ -51,36 +61,23 @@ export default defineComponent({
   gap: clamp(3rem, 6vh, 8rem);
   padding-top: clamp(2rem, 6vh, 6rem);
   text-align: center;
-}
-.technology > article {
-  max-width: 30rem;
-  padding-inline: 1.5rem;
-}
-.technology > article > p {
-  margin-top: 1rem;
-}
-.technology__image {
-  width: 100%;
-  aspect-ratio: 5/2;
-  background-size: cover;
-  background-position: center;
-}
-.indicators {
-  display: flex;
-  gap: 1rem;
-}
-.image-launch-vehicle {
-  background-image: url("../assets/technology/image-launch-vehicle-landscape.jpg");
-}
-.image-spaceport {
-  background-image: url("../assets/technology/image-spaceport-landscape.jpg");
-}
-.image-space-capsule {
-  background-image: url("../assets/technology/image-space-capsule-landscape.jpg");
-}
 
-@media (min-width: 75em) {
-  .technology {
+  & > article {
+    max-width: 30rem;
+    padding-inline: 1.5rem;
+
+    & > p {
+      margin-top: 1rem;
+    }
+  }
+  &__image {
+    width: 100%;
+    aspect-ratio: 5/2;
+    background-size: cover;
+    background-position: center;
+  }
+
+  @media (min-width: breakpoint(large)) {
     display: grid;
     grid-template-columns: 5rem auto 1fr;
     grid-template-rows: 25% 50% 25%;
@@ -89,38 +86,34 @@ export default defineComponent({
     padding-top: 0;
     text-align: start;
     padding-left: 10vw;
+
+    &__image {
+      grid-column: 3;
+      grid-row: 1/4;
+      aspect-ratio: 9/10;
+      height: 515px;
+      width: auto;
+      justify-self: end;
+    }
+
+    & > article {
+      grid-column: 2;
+      grid-row: 2/3;
+      max-width: 40rem;
+    }
   }
-  .indicators {
+}
+
+.indicators {
+  display: flex;
+  gap: 1rem;
+  @media (min-width: breakpoint(large)) {
     grid-column: 1;
     grid-row: 2/3;
     height: 100%;
+    flex-direction: column;
     gap: 0;
     justify-content: space-evenly;
-  }
-  .technology__image {
-    grid-column: 3;
-    grid-row: 1/4;
-    aspect-ratio: 9/10;
-    height: 515px;
-    width: auto;
-    justify-self: end;
-  }
-  .technology > article {
-    grid-column: 2;
-    grid-row: 2/3;
-    max-width: 40rem;
-  }
-  .image-launch-vehicle {
-    background-image: url("../assets/technology/image-launch-vehicle-portrait.jpg");
-  }
-  .image-spaceport {
-    background-image: url("../assets/technology/image-spaceport-portrait.jpg");
-  }
-  .image-space-capsule {
-    background-image: url("../assets/technology/image-space-capsule-portrait.jpg");
-  }
-  .indicators {
-    flex-direction: column;
   }
 }
 </style>

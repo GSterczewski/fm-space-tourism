@@ -1,0 +1,74 @@
+$font-families: ("ff-sans" : '"Barlow Condensed", sans-serif', "ff-serif": "'Bellefair', serif");
+$colors: ("color-primary":0 100% 100%,  "color-accent": 231 77% 90%, "color-dark": 230 35% 7% );
+
+// generating root variables from map
+@each $name, $font in $font-families{
+  :root{
+    --#{$name} : #{$font};
+  }
+  
+}
+@each $name, $color in $colors{
+  :root{
+    --#{$name} : #{$color};
+  }
+  
+}
+
+$breakpoints : ("medium": 48em, "large": 75em);
+
+:root {
+  font-size: 15px;
+  
+  /*-------- FONT SIZES------- */
+  /* 80-150 */
+  --fs-900: 5rem;
+  /* 56-80-100 */
+  --fs-800: 3.5rem;
+  /* 24-40-56 */
+  --fs-700: 1.5rem;
+  /* 28 */
+  --fs-650: 1.75rem;
+  /* 16-24-32 */
+  --fs-600: 1rem;
+  /* 16-20-28 */
+  --fs-500: 1rem;
+  /* 16-14-16 */
+  --fs-350: 1rem;
+  /* 15-16-18 */
+  --fs-300: 0.935rem;
+  /* 14-16-16 */
+  --fs-250: 0.875rem;
+  /* 14 */
+  --fs-200: 0.875rem;
+  
+  /*--------- LETTER SPACING ---------*/
+  
+  --ls-200: 2.36px;
+  --ls-250: 2.7px;
+  --ls-300: 3.38px;
+  --ls-400: 4.75px;
+}
+
+@media (min-width: 48em) {
+  :root {
+    --fs-900: 9.375rem;
+    --fs-800: 5rem;
+    --fs-700: 2.5rem;
+    --fs-600: 1.5rem;
+    --fs-500: 1.25rem;
+    --fs-350: 0.875rem;
+    --fs-300: 1rem;
+    --fs-250: 1rem;
+  }
+}
+@media (min-width: 75em) {
+  :root {
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-500: 1.75rem;
+    --fs-350: 1rem;
+    --fs-300: 1.25rem;
+  }
+}

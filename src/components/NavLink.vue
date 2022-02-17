@@ -24,7 +24,7 @@ export default defineComponent({
   </router-link>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .navlink {
   font-size: var(--fs-350);
   text-decoration: none;
@@ -32,14 +32,14 @@ export default defineComponent({
   color: var(--color-primary);
   letter-spacing: 2.7px;
   position: relative;
+
+  &__number {
+    margin-right: 0.75rem;
+    font-weight: bold;
+  }
 }
 
-.navlink__number {
-  margin-right: 0.75rem;
-  font-weight: bold;
-}
-
-@media (max-width: 48em) {
+@media (max-width: breakpoint(medium)) {
   .navlink::after {
     content: "";
     position: absolute;
@@ -60,7 +60,7 @@ export default defineComponent({
   }
 }
 
-@media (min-width: 48em) and (max-width: 75em) {
+@media (min-width: breakpoint(medium)) and (max-width: breakpoint(large)) {
   .navlink {
     letter-spacing: 2.36px;
   }
@@ -69,9 +69,9 @@ export default defineComponent({
   }
 }
 
-@media (min-width: 48em) {
+@media (min-width: breakpoint(medium)) {
   .navlink {
-    padding-block: 2em;
+    padding-block: 1.8rem;
   }
   .navlink::after {
     content: "";
