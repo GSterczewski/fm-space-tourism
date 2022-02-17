@@ -27,7 +27,7 @@ export default defineComponent({
   </button>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .numbered-indicator {
   --size: 2.5rem;
   width: var(--size);
@@ -50,7 +50,7 @@ export default defineComponent({
   background-color: hsl(var(--color-primary));
   color: hsl(var(--color-dark));
 }
-@media (min-width: 75em) {
+@media (min-width: breakpoint(large)) {
   .numbered-indicator {
     --size: 3.5rem;
   }
