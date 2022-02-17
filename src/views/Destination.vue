@@ -82,9 +82,9 @@ export default defineComponent({
 
   &__image {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     padding-left: 5vw;
-    align-items: start;
+    align-items: flex-start;
 
     & > img {
       aspect-ratio: 1/1;
