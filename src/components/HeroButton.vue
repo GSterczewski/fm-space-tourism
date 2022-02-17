@@ -38,20 +38,4 @@ export default defineComponent({
     box-shadow: 0 0 0 var(--shadow-size) var(--shadow-color);
   }
 }
-// .shadow:hover,
-// .shadow:focus {
-//   box-shadow: 0 0 0 var(--shadow-size) var(--shadow-color);
-// }
-
-// @media (min-width: 48em) {
-//   .hero-button {
-//     font-size: 2rem;
-//     width: 15.125rem;
-//   }
-// }
-// @media (min-width: 75em) {
-//   .hero-button {
-//     width: 17.125rem;
-//   }
-// }
 </style>
