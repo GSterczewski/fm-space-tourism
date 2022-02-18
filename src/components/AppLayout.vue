@@ -7,7 +7,6 @@
 <style lang="scss">
 .layout-wrapper {
   min-height: 100vh;
-  background-color: grey;
   display: grid;
   grid-template-rows: auto 1fr;
   align-content: start;
