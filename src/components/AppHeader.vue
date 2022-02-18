@@ -36,16 +36,12 @@ export default defineComponent({
 </template>
 <style scoped lang="scss">
 .app-header {
-  --header-padding-left: 2em;
+  --padding-left: 2rem;
   display: flex;
   justify-content: space-between;
-  padding-left: var(--header-padding-left);
   @media (max-width: breakpoint(medium)) {
-    padding-block: 1em;
-  }
-  @media (min-width: breakpoint(large)) {
-    --header-padding-left: 5em;
-    margin-top: 2rem;
+    padding-block: 1rem;
+    padding-left: var(--padding-left);
   }
 }
 .app-logo {
@@ -57,18 +53,21 @@ export default defineComponent({
 }
 .navigation-container {
   background-color: hsl(var(--color-dark) / 0.75);
+  transition: all 0.35 ease;
+
   @supports (backdrop-filter: blur(0.1rem)) {
     background-color: hsl(var(--color-primary) / 0.15);
     backdrop-filter: blur(0.3rem);
   }
   @media (max-width: breakpoint(medium)) {
     position: fixed;
-    right: -15em;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
     width: 15em;
     height: 100vh;
     padding-top: 10em;
     padding-left: 2em;
-    transition: all 0.35 ease;
   }
   @media (min-width: breakpoint(medium)) {
     --navigation-padding-inline: 2em;
@@ -81,7 +80,7 @@ export default defineComponent({
   }
 
   &--visible {
-    right: 0;
+    transform: translateX(0);
   }
 }
 
@@ -92,7 +91,7 @@ export default defineComponent({
   display: none;
   @media (max-width: breakpoint(medium)) {
     position: absolute;
-    right: 2em;
+    right: var(--padding-left);
     height: 3rem;
     z-index: 2;
     display: flex;

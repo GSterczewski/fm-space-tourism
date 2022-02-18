@@ -11,9 +11,7 @@
   display: grid;
   grid-template-rows: auto 1fr;
   align-content: start;
-  & > *:last-child {
-    background-color: rebeccapurple;
-  }
+
   @media (min-width: breakpoint(medium)) {
     grid-template-columns: 4vw 1fr;
     grid-template-rows: auto 1fr 19fr;

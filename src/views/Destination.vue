@@ -3,12 +3,13 @@ import { defineComponent } from "vue";
 import useContent from "@/composables/useContent";
 import useCarousel from "@/composables/useCarousel";
 import VTab from "@/components/VTab.vue";
-import PageWrapper from "@/components/PageWrapper.vue";
+// import PageWrapper from "@/components/PageWrapper.vue";
 import DestinationStats from "@/components/DestinationStats.vue";
 import DestinationInfo from "@/components/DestinationInfo.vue";
+import PageTitle from "@/components/PageTitle.vue";
 export default defineComponent({
   name: "Destination",
-  components: { PageWrapper, VTab, DestinationStats, DestinationInfo },
+  components: { PageTitle, VTab, DestinationStats, DestinationInfo },
   setup() {
     const { destinations } = useContent();
     const { changeItem, selectedItem } = useCarousel(destinations);
@@ -21,13 +22,10 @@ export default defineComponent({
 });
 </script>
 <template>
-  <page-wrapper pageTitle="pick your destination" pageNumber="01">
+  <div class="page-wrapper destination-page">
+    <page-title pageTitle="pick your destination" pageNumber="01" />
     <article class="destination">
-      <div class="destination__image">
-        <img
-          :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
-        />
-      </div>
+      <img :src="require(`@/assets/destination/${selectedItem.image}.webp`)" />
       <div class="destination__content">
         <div class="tabs">
           <v-tab
@@ -53,69 +51,51 @@ export default defineComponent({
         </section>
       </div>
     </article>
-  </page-wrapper>
+  </div>
 </template>
 <style scoped lang="scss">
-.destination {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding-inline: 1.5rem;
-  padding-top: 5vh;
+.destination-page {
+  --vertical-flow: 2rem;
+  display: grid;
+  row-gap: var(--vertical-flow);
   @media (min-width: breakpoint(large)) {
-    min-height: 65h;
-    padding-top: 0;
-    padding-inline: 10vw;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 3rem 3rem auto;
-    gap: 0;
-    column-gap: 3rem;
+    grid-template-rows: auto minmax(66px, 10vh) 50vh 1fr;
+    row-gap: 0;
   }
-  @media (orientation: landscape) and (min-height: 1000px) {
-    padding-top: 8vh;
+}
+.destination {
+  padding-inline: 1.5rem;
+  padding-bottom: 3rem;
+  display: grid;
+  row-gap: var(--vertical-flow);
+  justify-items: center;
+  & > img {
+    aspect-ratio: 1;
+    width: 40vw;
+    max-width: 24rem;
   }
-  @media (orientation: portrait) and (min-height: 1300px) {
-    padding-top: 10vh;
-  }
-
-  &__image {
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 5vw;
-    align-items: flex-start;
-
-    & > img {
-      aspect-ratio: 1/1;
-      height: auto;
-      width: 90%;
-      max-width: 25rem;
-    }
-    @media (min-width: breakpoint(large)) {
-      grid-column: 1;
-      grid-row: 3;
-
-      & > img {
-        width: 50vh;
-      }
-    }
-  }
-
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    text-align: center;
-    @media (min-width: breakpoint(large)) {
-      text-align: start;
-      grid-row: 2/4;
-      grid-column: 2;
-      justify-content: center;
-    }
+    gap: 1.5rem;
   }
-  &__stats {
-    max-width: 30rem;
+
+  @media (min-width: breakpoint(large)) {
+    grid-row: 3;
+    grid-template-columns: 5% 34% 12% 34% 1fr;
+    row-gap: 0;
+    align-items: center;
+    padding-inline: 0;
+    padding-bottom: 0;
+
+    & > img {
+      grid-column: 2;
+      width: 25vw;
+    }
+
+    &__content {
+      grid-column: 4;
+    }
   }
 }
 .tabs {
