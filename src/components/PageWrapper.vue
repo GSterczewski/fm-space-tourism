@@ -28,14 +28,21 @@ export default defineComponent({
 </template>
 <style scoped lang="scss">
 .page-wrapper {
-  padding-top: clamp(2rem, 8vh, 5rem);
+  text-align: center;
+  --title-margin-bottom: max(2rem, 3.7vh);
+  & > *:first-child {
+    margin-bottom: var(--title-margin-bottom);
+  }
 
-  &__title {
-    padding-inline: clamp(1.5rem, 5vw, 10rem);
-
-    @media (min-width: breakpoint(large)) {
-      padding-left: 10vw;
+  @media (min-width: breakpoint(medium)) {
+    --title-margin-bottom: max(3.75rem, 5vh);
+    & > *:not(:first-child) {
+      text-align: start;
     }
+  }
+  @media (min-width: breakpoint(large)) {
+    --title-margin-bottom: 0;
+    text-align: start;
   }
 }
 </style>

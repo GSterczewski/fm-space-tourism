@@ -1,0 +1,39 @@
+<template>
+  <div class="layout-wrapper">
+    <slot name="header" />
+    <slot name="content" />
+  </div>
+</template>
+<style lang="scss">
+.layout-wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-content: start;
+
+  @media (min-width: breakpoint(medium)) {
+    grid-template-columns: 4vw 1fr;
+    grid-template-rows: auto 1fr 19fr;
+    & > *:first-child {
+      grid-row: 1;
+      grid-column: 2 / span all;
+    }
+    & > *:last-child {
+      grid-column: 1 / span all;
+      grid-row: 3;
+    }
+  }
+
+  @media (min-width: breakpoint(large)) {
+    grid-template-columns: 4vw 7vw 1fr;
+    grid-template-rows: 1fr auto 2fr 22fr;
+    & > *:first-child {
+      grid-row: 2;
+    }
+    & > *:last-child {
+      grid-column: 3;
+      grid-row: 4;
+    }
+  }
+}
+</style>

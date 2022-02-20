@@ -3,10 +3,10 @@ import { defineComponent } from "vue";
 import useContent from "@/composables/useContent";
 import useCarousel from "@/composables/useCarousel";
 import CircleIndicator from "@/components/CircleIndicator.vue";
-import PageWrapper from "@/components/PageWrapper.vue";
+import PageTitle from "@/components/PageTitle.vue";
 export default defineComponent({
   name: "Crew",
-  components: { PageWrapper, CircleIndicator },
+  components: { PageTitle, CircleIndicator },
   setup() {
     const { crew } = useContent();
     const { selectedItem, changeItem } = useCarousel(crew);
@@ -19,9 +19,12 @@ export default defineComponent({
 });
 </script>
 <template>
-  <page-wrapper pageTitle="meet your crew" pageNumber="02">
+  <div class="page-wrapper page-wrapper--crew">
+    <page-title pageTitle="meet your crew" pageNumber="02" />
     <div class="crew">
-      <img :src="require(`@/assets/crew/${selectedItem.image}.webp`)" />
+      <div class="crew__img-container">
+        <img :src="require(`@/assets/crew/${selectedItem.image}.webp`)" />
+      </div>
       <div class="indicators">
         <circle-indicator
           v-for="(member, index) in crew"
@@ -40,52 +43,87 @@ export default defineComponent({
         </p>
       </article>
     </div>
-  </page-wrapper>
+  </div>
 </template>
 <style scoped lang="scss">
-.crew {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+.page-wrapper--crew {
+  --vertical-flow: max(2rem, 6vh);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: var(--vertical-flow);
   padding-inline: 1.5rem;
-  padding-top: clamp(2rem, 5vh, 6rem);
-  padding-bottom: 4rem;
-  & > article > p {
-    max-width: 65ch;
-  }
+  padding-bottom: 3rem;
   @media (min-width: breakpoint(medium)) {
-    flex-direction: column-reverse;
-    justify-content: center;
-    min-height: 40vh;
+    padding-bottom: 0;
   }
   @media (min-width: breakpoint(large)) {
-    min-height: 70vh;
-    padding-left: 10vw;
-    text-align: start;
-    align-items: flex-start;
-    justify-content: space-around;
+    padding-inline: 0;
+    row-gap: 0;
   }
-  & > img {
-    max-width: 80%;
-    @media (min-width: breakpoint(medium)) {
-      max-height: 40vh;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%);
+}
+.crew {
+  display: grid;
+  grid-template-rows: 31vh auto 1fr;
+  row-gap: var(--vertical-flow);
+  justify-items: center;
+  &__img-container {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    & > img {
+      height: 100%;
     }
-    @media (min-height: 1000px) {
-      max-height: 50vh;
+  }
+  & > article > p {
+    max-width: 64ch;
+    margin-top: 1rem;
+  }
+
+  @media (min-width: breakpoint(medium)) {
+    grid-template-rows: auto auto 45vh;
+
+    & > article {
+      grid-row: 1;
     }
-    @media (min-width: breakpoint(large)) {
-      max-height: 70vh;
-      transform: translate(0);
-      left: 65%;
+
+    & > .indicators {
+      grid-row: 2;
+      align-self: center;
+    }
+
+    &__img-container {
+      grid-row: 3;
+    }
+  }
+  @media (min-width: breakpoint(large)) {
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 20% 50% 30%;
+    justify-items: start;
+    gap: 0;
+
+    &__img-container {
+      grid-column: 2;
+      grid-row: 1 / span all;
+      align-items: end;
+      justify-items: start;
+      & > img {
+        max-height: 70vh;
+      }
+    }
+
+    & > article {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    & > .indicators {
+      grid-column: 1;
+      grid-row: 3;
     }
   }
 }
+
 .indicators {
   display: flex;
   gap: 1rem;

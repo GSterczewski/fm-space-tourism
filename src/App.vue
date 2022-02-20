@@ -3,9 +3,10 @@ import { defineComponent, computed } from "vue";
 import { useRoute } from "vue-router";
 import AppHeader from "@/components/AppHeader.vue";
 import AppNavigation from "@/components/AppNavigation.vue";
+import AppLayout from "./components/AppLayout.vue";
 import routes from "@/router/routes";
 export default defineComponent({
-  components: { AppHeader, AppNavigation },
+  components: { AppLayout, AppHeader, AppNavigation },
   setup() {
     const backgroundImage = computed(() => {
       const route = useRoute();
@@ -19,25 +20,30 @@ export default defineComponent({
 });
 </script>
 <template>
-  <div class="layout-wrapper" :class="backgroundImage">
-    <app-header>
-      <app-navigation :routes="routes" />
-    </app-header>
-    <router-view />
-  </div>
+  <app-layout class="background" :class="backgroundImage">
+    <template v-slot:header>
+      <app-header>
+        <app-navigation :routes="routes" />
+      </app-header>
+    </template>
+    <template v-slot:content>
+      <!-- <div class="stub-content"></div> -->
+      <router-view />
+    </template>
+  </app-layout>
 </template>
 
 <style lang="scss">
 @import "./style/global.scss";
-.layout-wrapper {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr;
+
+.stub-content {
+  background-color: brown;
+}
+.background {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 $backgrounds: ("home", "destination", "crew", "technology");
 @each $background in $backgrounds {
   .background--#{$background} {

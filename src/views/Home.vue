@@ -31,28 +31,25 @@ export default defineComponent({
 .home {
   display: grid;
   text-align: center;
-  place-content: center;
-  gap: 10vh;
   padding-inline: 1.5em;
-
+  align-items: center;
+  justify-content: center;
   @media (min-width: breakpoint(large)) {
+    grid-template-columns: 1fr 1fr 10vw;
+    justify-content: center;
     text-align: start;
-    grid-template-columns: 10% 1fr 1fr 10%;
-    align-content: end;
-    padding-bottom: 10%;
   }
 
   &__content {
     max-width: 65ch;
     @media (min-width: breakpoint(large)) {
       max-width: 62ch;
-      grid-column: 2;
+      grid-column: 1;
     }
   }
 
   &__button-container {
     @media (min-width: breakpoint(large)) {
-      align-self: end;
       justify-self: end;
     }
   }

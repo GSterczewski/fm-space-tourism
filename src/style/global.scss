@@ -78,6 +78,7 @@
 body {
   color: hsl(var(--color-primary));
   font-family: var(--ff-sans);
+  height:100%;
 }
 
 /*------- TYPOGRAPHY  ------------ */
@@ -85,4 +86,18 @@ body {
 .heading {
   text-transform: uppercase;
   font-weight: 400;
+}
+
+
+.page-wrapper {
+  text-align: center;
+
+  @media (min-width: breakpoint(medium)) {
+    & >:first-child {
+      text-align: start;
+    }
+  }
+  @media (min-width: breakpoint(large)) {
+    text-align: start;
+  }
 }
