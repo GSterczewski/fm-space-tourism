@@ -30,9 +30,11 @@ export default defineComponent({
   @media (min-width: breakpoint(medium)) {
     justify-content: start;
     letter-spacing: var(--ls-300);
+    padding-left: 4vw;
   }
   @media (min-width: breakpoint(large)) {
     letter-spacing: var(--ls-400);
+    padding-left: 0;
     gap: 2rem;
   }
 }

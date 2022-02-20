@@ -19,7 +19,7 @@
       grid-column: 2 / span all;
     }
     & > *:last-child {
-      grid-column: 2;
+      grid-column: 1 / span all;
       grid-row: 3;
     }
   }
