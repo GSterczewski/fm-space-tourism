@@ -3,10 +3,10 @@ import { defineComponent } from "vue";
 import useContent from "@/composables/useContent";
 import useCarousel from "@/composables/useCarousel";
 import NumberedIndicator from "@/components/NumberedIndicator.vue";
-import PageWrapper from "@/components/PageWrapper.vue";
+import PageTitle from "@/components/PageTitle.vue";
 export default defineComponent({
   name: "Technology",
-  components: { PageWrapper, NumberedIndicator },
+  components: { PageTitle, NumberedIndicator },
   setup() {
     const { technology } = useContent();
     const { selectedItem, changeItem } = useCarousel(technology);
@@ -19,7 +19,8 @@ export default defineComponent({
 });
 </script>
 <template>
-  <page-wrapper pageTitle="space launch 101" pageNumber="03">
+  <div>
+    <page-title pageTitle="space launch 101" pageNumber="03" />
     <div class="technology">
       <div class="technology__image" :class="selectedItem.image"></div>
       <div class="indicators">
@@ -41,7 +42,7 @@ export default defineComponent({
         </p>
       </article>
     </div>
-  </page-wrapper>
+  </div>
 </template>
 <style scoped lang="scss">
 $images: ("launch-vehicle", "spaceport", "space-capsule");
@@ -85,7 +86,6 @@ $images: ("launch-vehicle", "spaceport", "space-capsule");
     gap: 0;
     padding-top: 0;
     text-align: start;
-    padding-left: 10vw;
 
     &__image {
       grid-column: 3;
