@@ -27,7 +27,6 @@ export default defineComponent({
       </app-header>
     </template>
     <template v-slot:content>
-      <!-- <div class="stub-content"></div> -->
       <router-view />
     </template>
   </app-layout>
@@ -36,9 +35,6 @@ export default defineComponent({
 <style lang="scss">
 @import "./style/global.scss";
 
-.stub-content {
-  background-color: brown;
-}
 .background {
   background-position: center;
   background-repeat: no-repeat;
