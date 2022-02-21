@@ -23,7 +23,12 @@ export default defineComponent({
     <page-title pageTitle="meet your crew" pageNumber="02" />
     <div class="crew">
       <div class="crew__img-container">
-        <img :src="require(`@/assets/crew/${selectedItem.image}.webp`)" />
+        <transition name="fade" mode="out-in">
+          <img
+            :key="selectedItem.image"
+            :src="require(`@/assets/crew/${selectedItem.image}.webp`)"
+          />
+        </transition>
       </div>
       <div class="indicators">
         <circle-indicator
@@ -33,15 +38,19 @@ export default defineComponent({
           :isActive="member.name === selectedItem.name"
         />
       </div>
-      <article>
-        <h2 class="heading ff-serif">
-          <span class="d-block fs-600 color-gray">{{ selectedItem.role }}</span>
-          <span class="fs-700">{{ selectedItem.name }}</span>
-        </h2>
-        <p class="fs-300 color-accent">
-          {{ selectedItem.brief }}
-        </p>
-      </article>
+      <transition name="fade" mode="out-in">
+        <article :key="selectedItem.name">
+          <h2 class="heading ff-serif">
+            <span class="d-block fs-600 color-gray">{{
+              selectedItem.role
+            }}</span>
+            <span class="fs-700">{{ selectedItem.name }}</span>
+          </h2>
+          <p class="fs-300 color-accent">
+            {{ selectedItem.brief }}
+          </p>
+        </article>
+      </transition>
     </div>
   </div>
 </template>

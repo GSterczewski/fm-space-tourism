@@ -24,8 +24,13 @@ export default defineComponent({
 <template>
   <div class="page-wrapper destination-page">
     <page-title pageTitle="pick your destination" pageNumber="01" />
-    <article class="destination">
-      <img :src="require(`@/assets/destination/${selectedItem.image}.webp`)" />
+    <article class="destination fadeIn">
+      <transition name="fade" mode="out-in">
+        <img
+          :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
+          :key="selectedItem.image"
+        />
+      </transition>
       <div class="destination__content">
         <div class="tabs">
           <v-tab
@@ -37,17 +42,23 @@ export default defineComponent({
           >
         </div>
         <section>
-          <destination-info
-            :name="selectedItem.name"
-            :brief="selectedItem.brief"
-          />
+          <transition name="fade" mode="out-in">
+            <destination-info
+              :key="selectedItem.name"
+              :name="selectedItem.name"
+              :brief="selectedItem.brief"
+            />
+          </transition>
         </section>
 
         <section class="destination__stats">
-          <destination-stats
-            :distance="selectedItem.distance"
-            :travelTime="selectedItem.travelTime"
-          />
+          <transition name="fade" mode="out-in">
+            <destination-stats
+              :key="selectedItem.name"
+              :distance="selectedItem.distance"
+              :travelTime="selectedItem.travelTime"
+            />
+          </transition>
         </section>
       </div>
     </article>

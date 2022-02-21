@@ -22,7 +22,13 @@ export default defineComponent({
   <div>
     <page-title pageTitle="space launch 101" pageNumber="03" />
     <div class="technology">
-      <div class="technology__image" :class="selectedItem.image"></div>
+      <transition name="fade" mode="out-in">
+        <div
+          :key="selectedItem.image"
+          class="technology__image"
+          :class="selectedItem.image"
+        ></div>
+      </transition>
       <div class="indicators">
         <numbered-indicator
           v-for="(tech, index) in technology"
@@ -32,15 +38,17 @@ export default defineComponent({
           >{{ index + 1 }}</numbered-indicator
         >
       </div>
-      <article>
-        <h2 class="heading ff-serif">
-          <span class="d-block fs-250 color-gray">the terminology...</span>
-          <span class="fs-700">{{ selectedItem.name }}</span>
-        </h2>
-        <p class="fs-300 color-accent">
-          {{ selectedItem.definition }}
-        </p>
-      </article>
+      <transition name="fade" mode="out-in">
+        <article :key="selectedItem.name">
+          <h2 class="heading ff-serif">
+            <span class="d-block fs-250 color-gray">the terminology...</span>
+            <span class="fs-700">{{ selectedItem.name }}</span>
+          </h2>
+          <p class="fs-300 color-accent">
+            {{ selectedItem.definition }}
+          </p>
+        </article>
+      </transition>
     </div>
   </div>
 </template>
