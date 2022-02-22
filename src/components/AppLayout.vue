@@ -1,39 +1,76 @@
+<script lang="ts">
+import { defineComponent } from "vue";
+import AppHeader from "@/components/AppHeader.vue";
+export default defineComponent({
+  name: "AppLayout",
+  components: { AppHeader },
+  props: {
+    background: {
+      type: String,
+    },
+  },
+});
+</script>
 <template>
-  <div class="layout-wrapper">
-    <slot name="header" />
-    <slot name="content" />
+  <div class="layout-wrapper layout-grid" :class="`background--${background}`">
+    <div class="header-container">
+      <app-header />
+    </div>
+    <div class="content-container">
+      <slot />
+    </div>
   </div>
 </template>
-<style lang="scss">
-.layout-wrapper {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  align-content: start;
 
-  @media (min-width: breakpoint(medium)) {
-    grid-template-columns: 4vw 1fr;
-    grid-template-rows: auto 1fr 19fr;
-    & > *:first-child {
-      grid-row: 1;
-      grid-column: 2 / span all;
+<style scoped lang="scss">
+$backgrounds: ("home", "destination", "crew", "technology");
+@each $background in $backgrounds {
+  .background--#{$background} {
+    background-image: url("../assets/#{$background}/background-#{$background}-mobile.jpg");
+    @media (min-width: breakpoint("medium")) {
+      background-image: url("../assets/#{$background}/background-#{$background}-tablet.jpg");
     }
-    & > *:last-child {
-      grid-column: 1 / span all;
-      grid-row: 3;
+    @media (min-width: breakpoint("large")) {
+      background-image: url("../assets/#{$background}/background-#{$background}-desktop.jpg");
     }
   }
+}
+.layout-wrapper {
+  min-height: 100vh;
+  padding-bottom: 2rem;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @media (min-width: breakpoint(medium)) {
+    padding-bottom: 0;
+  }
+  @media (min-width: breakpoint(large)) {
+    text-align: start;
+  }
+}
+.layout-grid {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr 1.5rem;
+  grid-template-rows: auto 1fr;
 
   @media (min-width: breakpoint(large)) {
     grid-template-columns: 4vw 7vw 1fr;
-    grid-template-rows: 1fr auto 2fr 22fr;
-    & > *:first-child {
-      grid-row: 2;
-    }
-    & > *:last-child {
-      grid-column: 3;
-      grid-row: 4;
-    }
+    grid-template-rows: 4vh auto 1fr;
+  }
+}
+.header-container {
+  grid-column: 2 / span all;
+  @media (min-width: breakpoint(large)) {
+    grid-row: 2;
+  }
+}
+.content-container {
+  grid-column: 1 / span all;
+  @media (min-width: breakpoint(large)) {
+    grid-column: 3;
+    grid-row: 3;
   }
 }
 </style>
