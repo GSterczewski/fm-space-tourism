@@ -5,7 +5,7 @@ import useCarousel from "@/composables/useCarousel";
 import NumberedIndicator from "@/components/NumberedIndicator.vue";
 import PageTitle from "@/components/PageTitle.vue";
 export default defineComponent({
-  name: "Technology",
+  name: "TechnologyView",
   components: { PageTitle, NumberedIndicator },
   setup() {
     const { technology } = useContent();
