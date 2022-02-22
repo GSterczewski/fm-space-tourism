@@ -1,28 +1,28 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
-import Destination from "../views/Destination.vue";
-import Crew from "../views/Crew.vue";
-import Technology from "../views/Technology.vue";
+import HomeView from "../views/HomeView.vue";
+import DestinationView from "../views/DestinationView.vue";
+import CrewView from "../views/CrewView.vue";
+import TechnologyView from "../views/TechnologyView.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: HomeView,
   },
   {
     path: "/destination",
     name: "Destination",
-    component: Destination,
+    component: DestinationView,
   },
   {
     path: "/crew",
     name: "Crew",
-    component: Crew,
+    component: CrewView,
   },
   {
     path: "/technology",
     name: "Technology",
-    component: Technology,
+    component: TechnologyView,
   },
 ];
 

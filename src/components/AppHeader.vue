@@ -1,9 +1,11 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import HamburgerButton from "./HamburgerButton.vue";
+import AppNavigation from "./AppNavigation.vue";
+import routes from "@/router/routes";
 export default defineComponent({
   name: "AppHeader",
-  components: { HamburgerButton },
+  components: { HamburgerButton, AppNavigation },
   setup() {
     const isMenuOpen = ref(false);
     const toggleMenu = () => {
@@ -12,6 +14,7 @@ export default defineComponent({
     return {
       isMenuOpen,
       toggleMenu,
+      routes,
     };
   },
 });
@@ -27,7 +30,7 @@ export default defineComponent({
       class="navigation-container"
       :class="{ 'navigation-container--visible': isMenuOpen }"
     >
-      <slot />
+      <app-navigation :routes="routes" />
     </div>
     <div class="button-container">
       <HamburgerButton :isOpen="isMenuOpen" :onClick="toggleMenu" />

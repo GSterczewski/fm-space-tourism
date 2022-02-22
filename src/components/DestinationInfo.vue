@@ -23,7 +23,6 @@ export default defineComponent({
 .info {
   & > h2 {
     line-height: 1.1;
-    margin-bottom: 1rem;
   }
   & > p {
     max-width: 65ch;

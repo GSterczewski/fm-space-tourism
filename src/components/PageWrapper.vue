@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import PageTitle from "./PageTitle.vue";
+import PageTitle from "@/components/PageTitle.vue";
 export default defineComponent({
   name: "PageWrapper",
   components: { PageTitle },
@@ -15,34 +15,29 @@ export default defineComponent({
 });
 </script>
 <template>
-  <div class="page-wrapper">
-    <page-title
-      :pageTitle="pageTitle"
-      :pageNumber="pageNumber"
-      class="page-wrapper__title"
-    ></page-title>
-    <main>
+  <div class="page-wrapper page-wrapper-grid">
+    <page-title :pageTitle="pageTitle" :pageNumber="pageNumber"></page-title>
+    <div>
       <slot />
-    </main>
+    </div>
   </div>
 </template>
 <style scoped lang="scss">
 .page-wrapper {
-  text-align: center;
-  --title-margin-bottom: max(2rem, 3.7vh);
+  height: 100%;
+}
+.page-wrapper-grid {
+  --top-row: 4vh;
+  display: grid;
+  grid-template-rows: var(--top-row) auto 1fr;
   & > *:first-child {
-    margin-bottom: var(--title-margin-bottom);
+    grid-row: 2;
   }
-
-  @media (min-width: breakpoint(medium)) {
-    --title-margin-bottom: max(3.75rem, 5vh);
-    & > *:not(:first-child) {
-      text-align: start;
-    }
+  & > *:last-child {
+    grid-row: 3;
   }
   @media (min-width: breakpoint(large)) {
-    --title-margin-bottom: 0;
-    text-align: start;
+    --top-row: 8vh;
   }
 }
 </style>
