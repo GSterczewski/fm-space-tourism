@@ -57,7 +57,6 @@ export default defineComponent({
 .navigation-container {
   background-color: hsl(var(--color-dark) / 0.75);
   transition: all 0.35 ease;
-
   @supports (backdrop-filter: blur(0.1rem)) {
     background-color: hsl(var(--color-primary) / 0.15);
     backdrop-filter: blur(0.3rem);
@@ -69,7 +68,7 @@ export default defineComponent({
     transform: translateX(100%);
     width: 15em;
     height: 100vh;
-    padding-top: 10em;
+    padding-top: clamp(4rem, 15vh, 15rem);
     padding-left: 2em;
   }
   @media (min-width: breakpoint(medium)) {
