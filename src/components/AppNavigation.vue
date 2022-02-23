@@ -36,6 +36,7 @@ export default defineComponent({
     display: flex;
     list-style: none;
     justify-content: space-between;
+    text-align: start;
     @media (max-width: breakpoint(medium)) {
       flex-direction: column;
       gap: 2rem;
