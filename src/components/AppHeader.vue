@@ -66,7 +66,7 @@ export default defineComponent({
     top: 0;
     right: 0;
     transform: translateX(100%);
-    width: 15em;
+    width: 15rem;
     height: 100vh;
     padding-top: clamp(4rem, 15vh, 15rem);
     padding-left: 2em;
