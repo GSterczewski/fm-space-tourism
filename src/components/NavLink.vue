@@ -25,6 +25,9 @@ export default defineComponent({
 </template>
 
 <style scoped lang="scss">
+/*
+* @todo : reorganize media queries, because it's a mess right now 
+*/
 .navlink {
   font-size: var(--fs-350);
   text-decoration: none;
@@ -69,7 +72,7 @@ export default defineComponent({
   }
 }
 
-@media (min-width: breakpoint(medium)) {
+@media (min-width: 769px) {
   .navlink {
     padding-block: 1.8rem;
   }
