@@ -76,9 +76,11 @@
 }
 /*-------- BASE -------------------*/
 body {
-  color: hsl(var(--color-primary));
-  font-family: var(--ff-sans);
   height:100%;
+  overflow-x: hidden;
+  font-family: var(--ff-sans);
+  color: hsl(var(--color-primary));
+  background-color: hsl(var(--color-dark));
 }
 
 /*------- TYPOGRAPHY  ------------ */
