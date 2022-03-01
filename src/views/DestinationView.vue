@@ -5,12 +5,10 @@ import useCarousel from "@/composables/useCarousel";
 import VTab from "@/components/VTab.vue";
 import DestinationStats from "@/components/DestinationStats.vue";
 import DestinationInfo from "@/components/DestinationInfo.vue";
-import AppLayout from "@/components/AppLayout.vue";
 import PageWrapper from "@/components/PageWrapper.vue";
 export default defineComponent({
   name: "DestinationView",
   components: {
-    AppLayout,
     PageWrapper,
     VTab,
     DestinationStats,
@@ -28,48 +26,46 @@ export default defineComponent({
 });
 </script>
 <template>
-  <app-layout background="destination">
-    <page-wrapper pageTitle="pick your destination" pageNumber="01">
-      <article class="destination destination-grid">
-        <transition name="fade" mode="out-in">
-          <img
-            :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
-            :key="selectedItem.image"
-          />
-        </transition>
-        <div class="destination__content destination-grid__content">
-          <div class="tabs">
-            <v-tab
-              v-for="(destination, index) in destinations"
-              :key="destination.name"
-              :isActive="destination.name === selectedItem.name"
-              :onClick="() => changeItem(index)"
-              >{{ destination.name }}</v-tab
-            >
-          </div>
-          <section>
-            <transition name="fade" mode="out-in">
-              <destination-info
-                :key="selectedItem.name"
-                :name="selectedItem.name"
-                :brief="selectedItem.brief"
-              />
-            </transition>
-          </section>
-
-          <section class="destination__stats">
-            <transition name="fade" mode="out-in">
-              <destination-stats
-                :key="selectedItem.name"
-                :distance="selectedItem.distance"
-                :travelTime="selectedItem.travelTime"
-              />
-            </transition>
-          </section>
+  <page-wrapper pageTitle="pick your destination" pageNumber="01">
+    <article class="destination destination-grid">
+      <transition name="fade" mode="out-in">
+        <img
+          :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
+          :key="selectedItem.image"
+        />
+      </transition>
+      <div class="destination__content destination-grid__content">
+        <div class="tabs">
+          <v-tab
+            v-for="(destination, index) in destinations"
+            :key="destination.name"
+            :isActive="destination.name === selectedItem.name"
+            :onClick="() => changeItem(index)"
+            >{{ destination.name }}</v-tab
+          >
         </div>
-      </article>
-    </page-wrapper>
-  </app-layout>
+        <section>
+          <transition name="fade" mode="out-in">
+            <destination-info
+              :key="selectedItem.name"
+              :name="selectedItem.name"
+              :brief="selectedItem.brief"
+            />
+          </transition>
+        </section>
+
+        <section class="destination__stats">
+          <transition name="fade" mode="out-in">
+            <destination-stats
+              :key="selectedItem.name"
+              :distance="selectedItem.distance"
+              :travelTime="selectedItem.travelTime"
+            />
+          </transition>
+        </section>
+      </div>
+    </article>
+  </page-wrapper>
 </template>
 <style scoped lang="scss">
 .destination {

@@ -4,29 +4,27 @@ import HeroButton from "@/components/HeroButton.vue";
 import AppLayout from "@/components/AppLayout.vue";
 export default defineComponent({
   name: "HomeView",
-  components: { HeroButton, AppLayout },
+  components: { HeroButton },
 });
 </script>
 <template>
-  <app-layout background="home">
-    <div class="home">
-      <div class="home__content">
-        <h1 class="heading">
-          <span class="d-block fs-500 color-accent"
-            >so, you want to travel to</span
-          >
-          <span class="d-block fs-900 ff-serif ls-1">space</span>
-        </h1>
-        <p class="color-accent">
-          Let’s face it; if you want to go to space, you might as well genuinely
-          go to outer space and not hover kind of on the edge of it. Well sit
-          back, and relax because we’ll give you a truly out of this world
-          experience!
-        </p>
-      </div>
-      <hero-button>explore</hero-button>
+  <div class="home">
+    <div class="home__content">
+      <h1 class="heading">
+        <span class="d-block fs-500 color-accent"
+          >so, you want to travel to</span
+        >
+        <span class="d-block fs-900 ff-serif ls-1">space</span>
+      </h1>
+      <p class="color-accent">
+        Let’s face it; if you want to go to space, you might as well genuinely
+        go to outer space and not hover kind of on the edge of it. Well sit
+        back, and relax because we’ll give you a truly out of this world
+        experience!
+      </p>
     </div>
-  </app-layout>
+    <hero-button>explore</hero-button>
+  </div>
 </template>
 <style scoped lang="scss">
 .home {

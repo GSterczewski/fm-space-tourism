@@ -19,39 +19,37 @@ export default defineComponent({
 });
 </script>
 <template>
-  <app-layout background="technology">
-    <page-wrapper pageTitle="space launch 101" pageNumber="03">
-      <div class="technology">
-        <transition name="fade" mode="out-in">
-          <div
-            :key="selectedItem.image"
-            class="technology__image"
-            :class="selectedItem.image"
-          ></div>
-        </transition>
-        <div class="indicators">
-          <numbered-indicator
-            v-for="(tech, index) in technology"
-            :key="tech.name"
-            :onClick="() => changeItem(index)"
-            :isActive="tech.name === selectedItem.name"
-            >{{ index + 1 }}</numbered-indicator
-          >
-        </div>
-        <transition name="fade" mode="out-in">
-          <article :key="selectedItem.name">
-            <h2 class="heading ff-serif">
-              <span class="d-block fs-250 color-gray">the terminology...</span>
-              <span class="fs-700">{{ selectedItem.name }}</span>
-            </h2>
-            <p class="fs-300 color-accent">
-              {{ selectedItem.definition }}
-            </p>
-          </article>
-        </transition>
+  <page-wrapper pageTitle="space launch 101" pageNumber="03">
+    <div class="technology">
+      <transition name="fade" mode="out-in">
+        <div
+          :key="selectedItem.image"
+          class="technology__image"
+          :class="selectedItem.image"
+        ></div>
+      </transition>
+      <div class="indicators">
+        <numbered-indicator
+          v-for="(tech, index) in technology"
+          :key="tech.name"
+          :onClick="() => changeItem(index)"
+          :isActive="tech.name === selectedItem.name"
+          >{{ index + 1 }}</numbered-indicator
+        >
       </div>
-    </page-wrapper>
-  </app-layout>
+      <transition name="fade" mode="out-in">
+        <article :key="selectedItem.name">
+          <h2 class="heading ff-serif">
+            <span class="d-block fs-250 color-gray">the terminology...</span>
+            <span class="fs-700">{{ selectedItem.name }}</span>
+          </h2>
+          <p class="fs-300 color-accent">
+            {{ selectedItem.definition }}
+          </p>
+        </article>
+      </transition>
+    </div>
+  </page-wrapper>
 </template>
 <style scoped lang="scss">
 $images: ("launch-vehicle", "spaceport", "space-capsule");

@@ -6,22 +6,22 @@ import TechnologyView from "../views/TechnologyView.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: HomeView,
   },
   {
     path: "/destination",
-    name: "Destination",
+    name: "destination",
     component: DestinationView,
   },
   {
     path: "/crew",
-    name: "Crew",
+    name: "crew",
     component: CrewView,
   },
   {
     path: "/technology",
-    name: "Technology",
+    name: "technology",
     component: TechnologyView,
   },
 ];

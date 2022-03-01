@@ -3,11 +3,10 @@ import { defineComponent } from "vue";
 import useContent from "@/composables/useContent";
 import useCarousel from "@/composables/useCarousel";
 import CircleIndicator from "@/components/CircleIndicator.vue";
-import AppLayout from "@/components/AppLayout.vue";
 import PageWrapper from "@/components/PageWrapper.vue";
 export default defineComponent({
   name: "CrewView",
-  components: { CircleIndicator, AppLayout, PageWrapper },
+  components: { CircleIndicator, PageWrapper },
   setup() {
     const { crew } = useContent();
     const { selectedItem, changeItem } = useCarousel(crew);
@@ -20,41 +19,39 @@ export default defineComponent({
 });
 </script>
 <template>
-  <app-layout background="crew">
-    <page-wrapper pageTitle="meet your crew" pageNumber="02">
-      <div class="crew crew-grid">
-        <div class="crew__img-container">
-          <transition name="fade" mode="out-in">
-            <img
-              :key="selectedItem.image"
-              :src="require(`@/assets/crew/${selectedItem.image}.webp`)"
-            />
-          </transition>
-        </div>
-        <div class="indicators">
-          <circle-indicator
-            v-for="(member, index) in crew"
-            :key="member.name"
-            :onClick="() => changeItem(index)"
-            :isActive="member.name === selectedItem.name"
-          />
-        </div>
+  <page-wrapper pageTitle="meet your crew" pageNumber="02">
+    <div class="crew crew-grid">
+      <div class="crew__img-container">
         <transition name="fade" mode="out-in">
-          <article :key="selectedItem.name">
-            <h2 class="heading ff-serif">
-              <span class="d-block fs-600 color-gray">{{
-                selectedItem.role
-              }}</span>
-              <span class="fs-700">{{ selectedItem.name }}</span>
-            </h2>
-            <p class="fs-300 color-accent">
-              {{ selectedItem.brief }}
-            </p>
-          </article>
+          <img
+            :key="selectedItem.image"
+            :src="require(`@/assets/crew/${selectedItem.image}.webp`)"
+          />
         </transition>
       </div>
-    </page-wrapper>
-  </app-layout>
+      <div class="indicators">
+        <circle-indicator
+          v-for="(member, index) in crew"
+          :key="member.name"
+          :onClick="() => changeItem(index)"
+          :isActive="member.name === selectedItem.name"
+        />
+      </div>
+      <transition name="fade" mode="out-in">
+        <article :key="selectedItem.name">
+          <h2 class="heading ff-serif">
+            <span class="d-block fs-600 color-gray">{{
+              selectedItem.role
+            }}</span>
+            <span class="fs-700">{{ selectedItem.name }}</span>
+          </h2>
+          <p class="fs-300 color-accent">
+            {{ selectedItem.brief }}
+          </p>
+        </article>
+      </transition>
+    </div>
+  </page-wrapper>
 </template>
 <style scoped lang="scss">
 .crew {
