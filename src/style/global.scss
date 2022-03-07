@@ -90,26 +90,3 @@ body {
   font-weight: 400;
 }
 
-
-.page-wrapper {
-  text-align: center;
-
-  @media (min-width: breakpoint(medium)) {
-    & >:first-child {
-      text-align: start;
-    }
-  }
-  @media (min-width: breakpoint(large)) {
-    text-align: start;
-  }
-}
-
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease-in-out;
-}
