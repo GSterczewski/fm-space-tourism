@@ -1,7 +1,7 @@
 <template>
   <app-layout :background="background">
     <router-view v-slot="{ Component }">
-      <transition name="page-switch" mode="out-in">
+      <transition name="page-fade" mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>
@@ -14,19 +14,29 @@ const background = computed(() => useRoute().name);
 </script>
 <style lang="scss">
 @import "./style/global.scss";
-.page-switch-enter-active {
-  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
-}
-.page-switch-leave-active {
-  transition: opacity 0.35s ease-in, transform 0.35s ease-in;
+
+$page-transition-duration--out: 0.35s;
+$page-transition-duration--in: 0.35s;
+$page-transition-timing--out: cubic-bezier(0.58, -0.94, 0.35, 1.5);
+$page-transition-timing--in: cubic-bezier(0.03, 0.76, 0.88, 2.5);
+
+.page-fade-enter-active {
+  transition: transform $page-transition-duration--in
+      $page-transition-timing--in,
+    opacity $page-transition-duration--in $page-transition-timing--in;
 }
 
-.page-switch-enter-from {
-  opacity: 0;
-  transform: translateX(-500px);
+.page-fade-leave-active {
+  transition: transform $page-transition-duration--out
+      $page-transition-timing--out,
+    opacity $page-transition-duration--out $page-transition-timing--out;
 }
-.page-switch-leave-to {
+.page-fade-enter-from {
+  opacity: 0.5;
+  transform: scale(0.5);
+}
+.page-fade-leave-to {
   opacity: 0;
-  transform: translateX(500px);
+  transform: scale(1.5);
 }
 </style>
