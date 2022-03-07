@@ -19,39 +19,45 @@ export default defineComponent({
 });
 </script>
 <template>
-  <app-layout background="technology">
-    <page-wrapper pageTitle="space launch 101" pageNumber="03">
-      <div class="technology">
-        <transition name="fade" mode="out-in">
-          <div
-            :key="selectedItem.image"
-            class="technology__image"
-            :class="selectedItem.image"
-          ></div>
-        </transition>
-        <div class="indicators">
-          <numbered-indicator
-            v-for="(tech, index) in technology"
-            :key="tech.name"
-            :onClick="() => changeItem(index)"
-            :isActive="tech.name === selectedItem.name"
-            >{{ index + 1 }}</numbered-indicator
-          >
-        </div>
-        <transition name="fade" mode="out-in">
-          <article :key="selectedItem.name">
-            <h2 class="heading ff-serif">
-              <span class="d-block fs-250 color-gray">the terminology...</span>
-              <span class="fs-700">{{ selectedItem.name }}</span>
-            </h2>
-            <p class="fs-300 color-accent">
-              {{ selectedItem.definition }}
-            </p>
-          </article>
-        </transition>
+  <page-wrapper pageTitle="space launch 101" pageNumber="03">
+    <div class="technology">
+      <transition name="fade" mode="out-in">
+        <div
+          :key="selectedItem.image"
+          class="technology__image"
+          :class="selectedItem.image"
+        ></div>
+      </transition>
+      <div class="indicators">
+        <numbered-indicator
+          v-for="(tech, index) in technology"
+          :key="tech.name"
+          :onClick="() => changeItem(index)"
+          :isActive="tech.name === selectedItem.name"
+          >{{ index + 1 }}</numbered-indicator
+        >
       </div>
-    </page-wrapper>
-  </app-layout>
+      <article>
+        <h2 class="heading ff-serif">
+          <transition name="fade-and-drop-3" mode="out-in">
+            <span class="d-block fs-250 color-gray" :key="selectedItem.name"
+              >the terminology...</span
+            >
+          </transition>
+          <transition name="fade-and-drop-2" mode="out-in">
+            <span class="d-block fs-700" :key="selectedItem.name">{{
+              selectedItem.name
+            }}</span>
+          </transition>
+        </h2>
+        <transition name="fade-and-drop-1" mode="out-in">
+          <p class="fs-300 color-accent" :key="selectedItem.definition">
+            {{ selectedItem.definition }}
+          </p>
+        </transition>
+      </article>
+    </div>
+  </page-wrapper>
 </template>
 <style scoped lang="scss">
 $images: ("launch-vehicle", "spaceport", "space-capsule");
@@ -123,6 +129,54 @@ $images: ("launch-vehicle", "spaceport", "space-capsule");
     flex-direction: column;
     gap: 0;
     justify-content: space-evenly;
+  }
+}
+/************* TRANSITIONS **************/
+
+$stagger-delays: (1, 2, 3, 4);
+$fade-and-drop-timing-out: ease-in;
+$fade-and-drop-timing-in: ease-out;
+$fade-and-drop-duration-in: 250;
+$fade-and-drop-duration-out: 150;
+$fade-and-drop-delay: 250;
+
+.fade-leave-active {
+  transition: opacity 550ms ease-in;
+}
+.fade-enter-active {
+  transition: opacity 550ms ease-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+@mixin fade-and-drop($duration, $timing, $delay) {
+  transition: opacity #{$duration}ms #{$delay}ms $timing,
+    transform #{$duration}ms #{$delay}ms $timing;
+}
+
+@each $delay in $stagger-delays {
+  .fade-and-drop-#{$delay}-enter-from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  .fade-and-drop-#{$delay}-leave-to {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  .fade-and-drop-#{$delay}-enter-active {
+    @include fade-and-drop(
+      $fade-and-drop-duration-in,
+      $fade-and-drop-timing-in,
+      $fade-and-drop-delay
+    );
+  }
+  .fade-and-drop-#{$delay}-leave-active {
+    @include fade-and-drop(
+      $fade-and-drop-duration-out,
+      $fade-and-drop-timing-out,
+      #{$delay * 150}
+    );
   }
 }
 </style>

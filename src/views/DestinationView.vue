@@ -5,12 +5,10 @@ import useCarousel from "@/composables/useCarousel";
 import VTab from "@/components/VTab.vue";
 import DestinationStats from "@/components/DestinationStats.vue";
 import DestinationInfo from "@/components/DestinationInfo.vue";
-import AppLayout from "@/components/AppLayout.vue";
 import PageWrapper from "@/components/PageWrapper.vue";
 export default defineComponent({
   name: "DestinationView",
   components: {
-    AppLayout,
     PageWrapper,
     VTab,
     DestinationStats,
@@ -28,48 +26,46 @@ export default defineComponent({
 });
 </script>
 <template>
-  <app-layout background="destination">
-    <page-wrapper pageTitle="pick your destination" pageNumber="01">
-      <article class="destination destination-grid">
-        <transition name="fade" mode="out-in">
-          <img
-            :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
-            :key="selectedItem.image"
-          />
-        </transition>
-        <div class="destination__content destination-grid__content">
-          <div class="tabs">
-            <v-tab
-              v-for="(destination, index) in destinations"
-              :key="destination.name"
-              :isActive="destination.name === selectedItem.name"
-              :onClick="() => changeItem(index)"
-              >{{ destination.name }}</v-tab
-            >
-          </div>
-          <section>
-            <transition name="fade" mode="out-in">
-              <destination-info
-                :key="selectedItem.name"
-                :name="selectedItem.name"
-                :brief="selectedItem.brief"
-              />
-            </transition>
-          </section>
-
-          <section class="destination__stats">
-            <transition name="fade" mode="out-in">
-              <destination-stats
-                :key="selectedItem.name"
-                :distance="selectedItem.distance"
-                :travelTime="selectedItem.travelTime"
-              />
-            </transition>
-          </section>
+  <page-wrapper pageTitle="pick your destination" pageNumber="01">
+    <article class="destination destination-grid">
+      <transition name="slide-right" mode="out-in">
+        <img
+          :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
+          :key="selectedItem.image"
+        />
+      </transition>
+      <div class="destination__content destination-grid__content">
+        <div class="tabs">
+          <v-tab
+            v-for="(destination, index) in destinations"
+            :key="destination.name"
+            :isActive="destination.name === selectedItem.name"
+            :onClick="() => changeItem(index)"
+            >{{ destination.name }}</v-tab
+          >
         </div>
-      </article>
-    </page-wrapper>
-  </app-layout>
+        <section>
+          <transition name="slide-right" mode="out-in">
+            <destination-info
+              :key="selectedItem.name"
+              :name="selectedItem.name"
+              :brief="selectedItem.brief"
+            />
+          </transition>
+        </section>
+
+        <section class="destination__stats">
+          <transition name="slide-left" mode="out-in">
+            <destination-stats
+              :key="selectedItem.name"
+              :distance="selectedItem.distance"
+              :travelTime="selectedItem.travelTime"
+            />
+          </transition>
+        </section>
+      </div>
+    </article>
+  </page-wrapper>
 </template>
 <style scoped lang="scss">
 .destination {
@@ -135,5 +131,39 @@ export default defineComponent({
   @media (min-width: breakpoint(large)) {
     justify-content: start;
   }
+}
+$slider-timing-in: cubic-bezier(0.44, -0.06, 0.18, 2);
+$slider-timing-out: cubic-bezier(0.58, -0.94, 0.46, 0.97);
+
+@mixin slide($x) {
+  opacity: 0;
+  transform: translateX(#{$x});
+}
+@mixin slide-transition($timing) {
+  transition: transform 350ms $timing, opacity 350ms $timing;
+}
+.slide-left-enter-active {
+  @include slide-transition($slider-timing-in);
+}
+.slide-left-leave-active {
+  @include slide-transition($slider-timing-out);
+}
+.slide-left-enter-from {
+  @include slide(-250px);
+}
+.slide-left-leave-to {
+  @include slide(250px);
+}
+.slide-right-enter-active {
+  @include slide-transition($slider-timing-in);
+}
+.slide-right-leave-active {
+  @include slide-transition($slider-timing-out);
+}
+.slide-right-enter-from {
+  @include slide(250px);
+}
+.slide-right-leave-to {
+  @include slide(-250px);
 }
 </style>
