@@ -28,7 +28,7 @@ export default defineComponent({
 <template>
   <page-wrapper pageTitle="pick your destination" pageNumber="01">
     <article class="destination destination-grid">
-      <transition name="fade" mode="out-in">
+      <transition name="slide-right" mode="out-in">
         <img
           :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
           :key="selectedItem.image"
@@ -45,7 +45,7 @@ export default defineComponent({
           >
         </div>
         <section>
-          <transition name="fade" mode="out-in">
+          <transition name="slide-right" mode="out-in">
             <destination-info
               :key="selectedItem.name"
               :name="selectedItem.name"
@@ -55,7 +55,7 @@ export default defineComponent({
         </section>
 
         <section class="destination__stats">
-          <transition name="fade" mode="out-in">
+          <transition name="slide-left" mode="out-in">
             <destination-stats
               :key="selectedItem.name"
               :distance="selectedItem.distance"
@@ -131,5 +131,39 @@ export default defineComponent({
   @media (min-width: breakpoint(large)) {
     justify-content: start;
   }
+}
+$slider-timing-in: cubic-bezier(0.44, -0.06, 0.18, 2);
+$slider-timing-out: cubic-bezier(0.58, -0.94, 0.46, 0.97);
+
+@mixin slide($x) {
+  opacity: 0;
+  transform: translateX(#{$x});
+}
+@mixin slide-transition($timing) {
+  transition: transform 350ms $timing, opacity 350ms $timing;
+}
+.slide-left-enter-active {
+  @include slide-transition($slider-timing-in);
+}
+.slide-left-leave-active {
+  @include slide-transition($slider-timing-out);
+}
+.slide-left-enter-from {
+  @include slide(-250px);
+}
+.slide-left-leave-to {
+  @include slide(250px);
+}
+.slide-right-enter-active {
+  @include slide-transition($slider-timing-in);
+}
+.slide-right-leave-active {
+  @include slide-transition($slider-timing-out);
+}
+.slide-right-enter-from {
+  @include slide(250px);
+}
+.slide-right-leave-to {
+  @include slide(-250px);
 }
 </style>
