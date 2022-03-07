@@ -42,6 +42,7 @@ $backgrounds: ("home", "destination", "crew", "technology");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: hidden;
 
   @media (min-width: breakpoint(medium)) {
     padding-bottom: 0;
