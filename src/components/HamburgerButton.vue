@@ -21,7 +21,7 @@ export default defineComponent({
   <button
     class="hamburger-button no-outline"
     :class="{ 'hamburger-button--open': isOpen }"
-    aria-label="menu"
+    aria-label="toggle menu"
     :aria-expanded="isOpen"
     @click="() => onClick()"
   >
@@ -30,6 +30,8 @@ export default defineComponent({
       xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="21"
+      aria-hidden="true"
+      focusable="false"
     >
       <g fill="currentColor" fill-rule="evenodd">
         <path d="M2.575.954l16.97 16.97-2.12 2.122L.455 3.076z" />
