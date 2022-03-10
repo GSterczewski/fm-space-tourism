@@ -27,7 +27,7 @@ export default defineComponent({
 </script>
 <template>
   <page-wrapper pageTitle="pick your destination" pageNumber="01">
-    <article class="destination destination-grid">
+    <article class="destination destination-grid" :title="selectedItem.name">
       <transition name="slide-right" mode="out-in">
         <img
           :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
