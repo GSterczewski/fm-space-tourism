@@ -29,7 +29,7 @@ export default defineComponent({
           <img
             :key="selectedItem.image"
             :src="require(`@/assets/crew/${selectedItem.image}.webp`)"
-            :alt="`picture of ${selectedItem.role} ${selectedItem.name}`"
+            :alt="`${selectedItem.role} ${selectedItem.name}`"
           />
         </transition>
       </div>
@@ -43,11 +43,7 @@ export default defineComponent({
           :aria-label="`select crew member ${index + 1}`"
         />
       </div>
-      <article
-        :aria-label="`crew member ${
-          selectedItemIndex + 1
-        } of ${crewMembersCount}`"
-      >
+      <article :title="`${selectedItem.role} ${selectedItem.name}`">
         <h2 class="heading ff-serif">
           <transition name="fade-and-slide-1" mode="out-in">
             <span class="d-block fs-600 color-gray" :key="selectedItem.role">{{
