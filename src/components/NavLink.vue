@@ -18,7 +18,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <router-link :to="to" class="navlink no-outline d-block">
+  <router-link :to="to" class="navlink no-outline d-block" :title="pageTitle">
     <span aria-hidden="true" class="navlink__number" v-text="pageNumber"></span>
     <span v-text="pageTitle"></span>
   </router-link>
