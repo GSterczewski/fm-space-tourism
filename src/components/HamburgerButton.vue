@@ -21,6 +21,8 @@ export default defineComponent({
   <button
     class="hamburger-button no-outline"
     :class="{ 'hamburger-button--open': isOpen }"
+    aria-label="menu"
+    :aria-expanded="isOpen"
     @click="() => onClick()"
   >
     <svg
