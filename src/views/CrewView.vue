@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import useContent from "@/composables/useContent";
 import useCarousel from "@/composables/useCarousel";
 import CircleIndicator from "@/components/CircleIndicator.vue";
@@ -9,11 +9,14 @@ export default defineComponent({
   components: { CircleIndicator, PageWrapper },
   setup() {
     const { crew } = useContent();
-    const { selectedItem, changeItem } = useCarousel(crew);
+    const crewMembersCount = ref(crew.length);
+    const { selectedItem, selectedItemIndex, changeItem } = useCarousel(crew);
     return {
       selectedItem,
       changeItem,
+      selectedItemIndex,
       crew,
+      crewMembersCount,
     };
   },
 });
@@ -26,6 +29,7 @@ export default defineComponent({
           <img
             :key="selectedItem.image"
             :src="require(`@/assets/crew/${selectedItem.image}.webp`)"
+            :alt="`picture of ${selectedItem.role} ${selectedItem.name}`"
           />
         </transition>
       </div>
@@ -35,9 +39,15 @@ export default defineComponent({
           :key="member.name"
           :onClick="() => changeItem(index)"
           :isActive="member.name === selectedItem.name"
+          :aria-current="member.name === selectedItem.name"
+          :aria-label="`select crew member ${index + 1}`"
         />
       </div>
-      <article>
+      <article
+        :aria-label="`crew member ${
+          selectedItemIndex + 1
+        } of ${crewMembersCount}`"
+      >
         <h2 class="heading ff-serif">
           <transition name="fade-and-slide-1" mode="out-in">
             <span class="d-block fs-600 color-gray" :key="selectedItem.role">{{
