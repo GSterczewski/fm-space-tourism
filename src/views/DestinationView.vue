@@ -32,6 +32,7 @@ export default defineComponent({
         <img
           :src="require(`@/assets/destination/${selectedItem.image}.webp`)"
           :key="selectedItem.image"
+          :alt="selectedItem.name"
         />
       </transition>
       <div class="destination__content destination-grid__content">
