@@ -1,8 +1,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import HeroButton from "@/components/HeroButton.vue";
+import AppLayout from "@/components/AppLayout.vue";
 export default defineComponent({
-  name: "Home",
+  name: "HomeView",
   components: { HeroButton },
 });
 </script>
@@ -22,22 +23,20 @@ export default defineComponent({
         experience!
       </p>
     </div>
-    <div class="home__button-container">
-      <hero-button>explore</hero-button>
-    </div>
+    <hero-button>explore</hero-button>
   </div>
 </template>
 <style scoped lang="scss">
 .home {
+  height: 100%;
   display: grid;
-  text-align: center;
   padding-inline: 1.5em;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
+
   @media (min-width: breakpoint(large)) {
     grid-template-columns: 1fr 1fr 10vw;
     justify-content: center;
-    text-align: start;
   }
 
   &__content {
@@ -48,7 +47,7 @@ export default defineComponent({
     }
   }
 
-  &__button-container {
+  & > .hero-button {
     @media (min-width: breakpoint(large)) {
       justify-self: end;
     }

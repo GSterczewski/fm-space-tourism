@@ -1,9 +1,11 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import HamburgerButton from "./HamburgerButton.vue";
+import AppNavigation from "./AppNavigation.vue";
+import routes from "@/router/routes";
 export default defineComponent({
   name: "AppHeader",
-  components: { HamburgerButton },
+  components: { HamburgerButton, AppNavigation },
   setup() {
     const isMenuOpen = ref(false);
     const toggleMenu = () => {
@@ -12,6 +14,7 @@ export default defineComponent({
     return {
       isMenuOpen,
       toggleMenu,
+      routes,
     };
   },
 });
@@ -27,7 +30,7 @@ export default defineComponent({
       class="navigation-container"
       :class="{ 'navigation-container--visible': isMenuOpen }"
     >
-      <slot />
+      <app-navigation :routes="routes" />
     </div>
     <div class="button-container">
       <HamburgerButton :isOpen="isMenuOpen" :onClick="toggleMenu" />
@@ -54,7 +57,6 @@ export default defineComponent({
 .navigation-container {
   background-color: hsl(var(--color-dark) / 0.75);
   transition: all 0.35 ease;
-
   @supports (backdrop-filter: blur(0.1rem)) {
     background-color: hsl(var(--color-primary) / 0.15);
     backdrop-filter: blur(0.3rem);
@@ -64,9 +66,9 @@ export default defineComponent({
     top: 0;
     right: 0;
     transform: translateX(100%);
-    width: 15em;
+    width: 15rem;
     height: 100vh;
-    padding-top: 10em;
+    padding-top: clamp(4rem, 15vh, 15rem);
     padding-left: 2em;
   }
   @media (min-width: breakpoint(medium)) {

@@ -5,13 +5,20 @@ export default defineComponent({
 });
 </script>
 <template>
-  <button class="hero-button shadow no-outline color-dark bg-primary ff-serif">
+  <router-link
+    to="/destination"
+    class="hero-button shadow no-outline color-dark bg-primary ff-serif"
+  >
     <slot />
-  </button>
+  </router-link>
 </template>
 
 <style scoped lang="scss">
 .hero-button {
+  display: grid;
+  place-items: center;
+
+  text-decoration: none;
   width: 9.375rem;
   aspect-ratio: 1;
   border-radius: 50%;
