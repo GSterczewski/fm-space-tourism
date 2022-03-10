@@ -34,10 +34,12 @@ export default defineComponent({
           :key="tech.name"
           :onClick="() => changeItem(index)"
           :isActive="tech.name === selectedItem.name"
+          :aria-current="tech.name === selectedItem.name"
+          :aria-label="`select technology ${index + 1}`"
           >{{ index + 1 }}</numbered-indicator
         >
       </div>
-      <article>
+      <article :title="selectedItem.name">
         <h2 class="heading ff-serif">
           <transition name="fade-and-drop-3" mode="out-in">
             <span class="d-block fs-250 color-gray" :key="selectedItem.name"

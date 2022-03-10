@@ -16,7 +16,7 @@ export default defineComponent({
 
 <template>
   <h1 class="heading page-title fs-500">
-    <span class="color-gray">{{ pageNumber }}</span>
+    <span aria-hidden="true" class="color-gray">{{ pageNumber }}</span>
     <span>{{ pageTitle }}</span>
   </h1>
 </template>

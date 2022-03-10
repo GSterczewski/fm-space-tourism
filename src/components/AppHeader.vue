@@ -30,10 +30,14 @@ export default defineComponent({
       class="navigation-container"
       :class="{ 'navigation-container--visible': isMenuOpen }"
     >
-      <app-navigation :routes="routes" />
+      <app-navigation :routes="routes" id="navigation" />
     </div>
     <div class="button-container">
-      <HamburgerButton :isOpen="isMenuOpen" :onClick="toggleMenu" />
+      <HamburgerButton
+        :isOpen="isMenuOpen"
+        :onClick="toggleMenu"
+        aria-controls="navigation"
+      />
     </div>
   </header>
 </template>

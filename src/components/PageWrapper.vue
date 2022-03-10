@@ -15,12 +15,16 @@ export default defineComponent({
 });
 </script>
 <template>
-  <div class="page-wrapper page-wrapper-grid">
-    <page-title :pageTitle="pageTitle" :pageNumber="pageNumber"></page-title>
+  <main class="page-wrapper page-wrapper-grid" aria-labelledby="page-title">
+    <page-title
+      :pageTitle="pageTitle"
+      :pageNumber="pageNumber"
+      id="page-title"
+    ></page-title>
     <div>
       <slot />
     </div>
-  </div>
+  </main>
 </template>
 <style scoped lang="scss">
 .page-wrapper {
