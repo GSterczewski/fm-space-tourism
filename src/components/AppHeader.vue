@@ -1,19 +1,17 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import HamburgerButton from "./HamburgerButton.vue";
 import AppNavigation from "./AppNavigation.vue";
 import routes from "@/router/routes";
+import menuStore from "@/store/menu";
 export default defineComponent({
   name: "AppHeader",
   components: { HamburgerButton, AppNavigation },
   setup() {
-    const isMenuOpen = ref(false);
-    const toggleMenu = () => {
-      isMenuOpen.value = !isMenuOpen.value;
-    };
+    const { isExpanded, toggle } = menuStore();
     return {
-      isMenuOpen,
-      toggleMenu,
+      isExpanded,
+      toggle,
       routes,
     };
   },
@@ -28,14 +26,14 @@ export default defineComponent({
     </div>
     <div
       class="navigation-container"
-      :class="{ 'navigation-container--visible': isMenuOpen }"
+      :class="{ 'navigation-container--visible': isExpanded }"
     >
       <app-navigation :routes="routes" id="navigation" />
     </div>
     <div class="button-container">
       <HamburgerButton
-        :isOpen="isMenuOpen"
-        :onClick="toggleMenu"
+        :isOpen="isExpanded"
+        :onClick="toggle"
         aria-controls="navigation"
       />
     </div>

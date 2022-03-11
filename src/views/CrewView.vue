@@ -1,22 +1,21 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import useContent from "@/composables/useContent";
+import { defineComponent } from "vue";
+import { getCrew } from "@/store/content";
 import useCarousel from "@/composables/useCarousel";
+import withRouteChange from "@/composables/withRouteChange";
 import CircleIndicator from "@/components/CircleIndicator.vue";
 import PageWrapper from "@/components/PageWrapper.vue";
 export default defineComponent({
   name: "CrewView",
   components: { CircleIndicator, PageWrapper },
   setup() {
-    const { crew } = useContent();
-    const crewMembersCount = ref(crew.length);
-    const { selectedItem, selectedItemIndex, changeItem } = useCarousel(crew);
+    const crew = getCrew();
+    const { selectedItem, changeItem } = useCarousel(crew);
+    withRouteChange();
     return {
       selectedItem,
       changeItem,
-      selectedItemIndex,
       crew,
-      crewMembersCount,
     };
   },
 });
