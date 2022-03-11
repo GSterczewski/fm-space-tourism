@@ -1,4 +1,5 @@
 import content from "../content.json";
+
 interface CrewMember {
   name: string;
   role: string;
@@ -17,18 +18,7 @@ interface Technology {
   image: string;
   definition: string;
 }
-interface Content {
-  crew: CrewMember[];
-  destinations: Destination[];
-  technology: Technology[];
-}
 
-export function useContent(): Content {
-  return {
-    crew: content.crew,
-    destinations: content.destinations,
-    technology: content.terminology,
-  };
-}
-
-export default useContent;
+export const getDestinations = (): Destination[] => content.destinations;
+export const getCrew = (): CrewMember[] => content.crew;
+export const getTechnology = (): Technology[] => content.terminology;

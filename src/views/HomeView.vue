@@ -1,10 +1,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import HeroButton from "@/components/HeroButton.vue";
-import AppLayout from "@/components/AppLayout.vue";
+import withRouteChange from "@/composables/withRouteChange";
 export default defineComponent({
   name: "HomeView",
   components: { HeroButton },
+  setup() {
+    withRouteChange();
+  },
 });
 </script>
 <template>

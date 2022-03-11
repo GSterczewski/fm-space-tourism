@@ -1,7 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import useContent from "@/composables/useContent";
 import useCarousel from "@/composables/useCarousel";
+import { getDestinations } from "@/store/content";
+import withRouteChange from "@/composables/withRouteChange";
 import VTab from "@/components/VTab.vue";
 import DestinationStats from "@/components/DestinationStats.vue";
 import DestinationInfo from "@/components/DestinationInfo.vue";
@@ -15,8 +16,9 @@ export default defineComponent({
     DestinationInfo,
   },
   setup() {
-    const { destinations } = useContent();
+    const destinations = getDestinations();
     const { changeItem, selectedItem } = useCarousel(destinations);
+    withRouteChange();
     return {
       destinations,
       changeItem,

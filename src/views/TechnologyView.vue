@@ -1,15 +1,17 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import useContent from "@/composables/useContent";
+import { getTechnology } from "@/store/content";
 import useCarousel from "@/composables/useCarousel";
+import withRouteChange from "@/composables/withRouteChange";
 import NumberedIndicator from "@/components/NumberedIndicator.vue";
 
 export default defineComponent({
   name: "TechnologyView",
   components: { NumberedIndicator },
   setup() {
-    const { technology } = useContent();
+    const technology = getTechnology();
     const { selectedItem, changeItem } = useCarousel(technology);
+    withRouteChange();
     return {
       selectedItem,
       changeItem,
